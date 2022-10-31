@@ -30,10 +30,13 @@
                     <input type="text" class="inputNameTask" placeholder="Ingrese el nombre de la tarea" required maxlength="100" >
                     <h3>Descripcion de la tarea:</h3>
                     <textarea class="inputDescriptionTask" rows="5"  placeholder="Ingrese la descripcion de la tarea" required maxlength="100"></textarea>
-                    <button type="submit" class="addButton"> Agregar </button>
+                <button type="submit" class="addButton" id="addButton"> Agregar </button>
                 </form>
+                <dialog class="addModalContent" id="modal">
+                    <img id="closeModal" src="./img/success.png" alt="success" >
+                    <h2>Tarea Agregada Exitosamente</h2>
+                </dialog>
             </div>
-
         </div>
 
 
@@ -45,7 +48,7 @@
             </div>
 
             <div>
-            <p> Aqui voy a trabajar -Anthony</p>
+                <p> Aqui voy a trabajar -Anthony</p>
             </div>
 
         </div>
@@ -76,5 +79,6 @@
     </main>
 
 </body>
+<script src="index.js"></script>
 
 </html>
