@@ -22,7 +22,6 @@ span {
 }
 
 
-
 .content {
     display: flex;
     flex-direction: row;
@@ -57,7 +56,6 @@ span {
 
 .inputDescriptionTask {
     border-radius: 15px;
-    padding: 25px 0;
     border-style: none;
 }
 
@@ -69,3 +67,30 @@ span {
     background-color: #B9B2FF;
     border-radius: 10px;
 }
+
+/* Modal Add */
+.addModalContent{
+border-style: none;
+background-color: #27C100;
+border-radius: 15px;
+text-align: center;
+}
+
+.addModalContent img{
+width: 250px;
+height: 250px;
+color: black;
+background-position: center;
+}
+
+.addModalContent h2{
+color: #F3F3F3;
+font-weight: bold;
+font-size:48px;
+}
+
+.addModalContent::backdrop{
+    background-color:rgba(0, 0, 0, 0.4)
+}
+
+
