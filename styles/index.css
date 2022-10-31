@@ -22,6 +22,7 @@ span {
 }
 
 
+
 .content {
     display: flex;
     flex-direction: row;
@@ -29,4 +30,42 @@ span {
     font-size: larger;
     margin: 0 30px;
     gap: 30px;
+}
+
+.titleContent {
+    text-align: center;
+    position: relative;
+    height: 150px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    background-color: #E8E8E8;
+    box-shadow: -6px 6px 2px 1px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    height: 350px;
+}
+
+.inputNameTask {
+    border-radius: 15px;
+    padding: 10px 0;
+    border-style: none;
+}
+
+.inputDescriptionTask {
+    border-radius: 15px;
+    padding: 25px 0;
+    border-style: none;
+}
+
+.addButton {
+    font-weight: bold;
+    margin-top: 30px;
+    padding:10px 30px;
+    border-style: none;
+    background-color: #B9B2FF;
+    border-radius: 10px;
 }
