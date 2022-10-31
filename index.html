@@ -14,19 +14,64 @@
     <header class="header">
         <h1>Lista de Tareas de tereas importantes<span>"POMODORO"</span></h1>
     </header>
-
+    <h1></h1>
     <main class="content">
-        <div class="todo">
-            <h2>Por Hacer</h2>
-            <p>Agrega la lista de <span>"Tareas"</span> que tienes que realizar</p>
+
+        <!-- Crear una nueva tarea  -->
+        <div>
+            <div class="titleContent">
+                <h2>Crear ueva Tarea</h2>
+
+            </div>
+
+            <div>
+                <form action="submit" class="form">
+                    <h3>Nombre de la tarea:</h3>
+                    <input type="text" class="inputNameTask">
+                    <h3>Descripcion de la tarea:</h3>
+                    <input type="text" class="inputDescriptionTask">
+                    <button type="submit" class="addButton"> Agregar </button>
+                </form>
+            </div>
+
         </div>
-        <div class="pending">
-            <h2>Realizando EAA</h2>
-            <p>Agrege ala lista las <span>"Tareas"</span> que estas realizando</p>
+
+
+        <!-- Lista principal -->
+        <div>
+            <div class="titleContent">
+                <h2>Por Hacer</h2>
+                <p>Agrega la lista de <span>"Tareas"</span> que tienes que realizar</p>
+            </div>
+
+            <div>
+
+            </div>
+
         </div>
-        <div class="success">
-            <h2>Completadas</h2>
-            <p>Agrege ala lista las <span>"Tareas"</span> que estan completadas</p>
+
+        <!-- Lista pendientes -->
+        <div>
+            <div class="titleContent">
+                <h2>Realizando</h2>
+                <p>Agrege ala lista las <span>"Tareas"</span> que estas realizando</p>
+            </div>
+
+            <div>
+
+            </div>
+        </div>
+
+        <!-- Lista completadas  -->
+        <div>
+            <div class="titleContent">
+                <h2>Completadas</h2>
+                <p>Agrege ala lista las <span>"Tareas"</span> que estan completadas</p>
+            </div>
+
+            <div>
+
+            </div>
         </div>
     </main>
 
