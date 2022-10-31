@@ -66,46 +66,48 @@ span {
 .addButton {
     font-weight: bold;
     margin-top: 30px;
-    padding:10px 30px;
+    padding: 10px 30px;
     border-style: none;
     background-color: #B9B2FF;
     border-radius: 10px;
 }
 
 /* Modal Add */
-.addModalContent{
-border-style: none;
-background-color: #27C100;
-border-radius: 15px;
-text-align: center;
+.addModalContent {
+    border-style: none;
+    background-color: #27C100;
+    border-radius: 15px;
+    text-align: center;
 }
 
-.addModalContent img{
-width: 250px;
-height: 250px;
-color: black;
-background-position: center;
+.addModalContent img {
+    width: 250px;
+    height: 250px;
+    color: black;
+    background-position: center;
 }
 
-.addModalContent h2{
-color: #F3F3F3;
-font-weight: bold;
-font-size:48px;
+.addModalContent h2 {
+    color: #F3F3F3;
+    font-weight: bold;
+    font-size: 48px;
 }
 
-.addModalContent::backdrop{
-    background-color:rgba(0, 0, 0, 0.4)
+.addModalContent::backdrop {
+    background-color: rgba(0, 0, 0, 0.4)
 }
 
 
 /* Principal List Tasks */
 
-.pendingClass{
+.pendingClass {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.pendingTask{
+.pendingTask {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -113,10 +115,16 @@ font-size:48px;
     border-radius: 15px;
     background-color: #E8E8E8;
     box-shadow: -6px 6px 2px 1px rgba(0, 0, 0, 0.3);
-    width:350px;
-    height: auto;
+    width: 350px;
 }
 
-.pendingTask h3{
-    margin:5px  15px;
+.pendingNameTask {
+    margin: 0;
+    color: #0E00A9;
+}
+
+.pendingDescriptionTask {
+    margin: 0;
+    height: auto;
+    word-wrap: break-word;
 }
