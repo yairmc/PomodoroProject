@@ -17,23 +17,30 @@ window.addEventListener('load', () => {
         const nameTask = inputNameTask.value;
         const descriptionTask = inputDescriptionTask.value;
 
-        listItems.push({ name: nameTask, description: descriptionTask, id: `task-${Math.floor(Math.random() * 300)}` });
-        localStorage.setItem('myTodoList', JSON.stringify(listItems));
+        for (let i = 0; listItems.length > i; i++) {
+            if (nameTask === listItems[i].name) {
+                alert('El nombre ya esta en la lista: ' + listItems[i].name);
+                return;
+            } else if (descriptionTask === listItems[i].description) {
+                alert(' La descripcion ya esta en la lista: ' + listItems[i].description)
+                return;
+            }
+        }
+        if (nameTask == null || descriptionTask == null) {
+            return
+        } else {
+            modal.showModal()
+            listItems.push({ name: nameTask, description: descriptionTask, id: `task-${Math.floor(Math.random() * 300)}` });
+            localStorage.setItem('myTodoList', JSON.stringify(listItems));
+        }
 
-        if (!nameTask) return alert("Porfavor ingresa el nombre de la tarea")
         loadPendingTask(listItems)
         inputNameTask.value = '';
         inputDescriptionTask.value = '';
+        btnCloseAddModal.addEventListener("click", () => {
+            modal.close()
+        })
     })
-})
-
-
-btnAddModal.addEventListener("click", () => {
-    modal.showModal()
-})
-
-btnCloseAddModal.addEventListener("click", () => {
-    modal.close()
 })
 
 const loadPendingTask = (todoPending) => {
