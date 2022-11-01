@@ -66,3 +66,4 @@ const loadPendingTask = (todoPending) => {
         pendingTask.appendChild(pendingTaskDescription)
     })
 }
+
