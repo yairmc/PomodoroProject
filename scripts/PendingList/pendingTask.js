@@ -1,3 +1,5 @@
+// Crea el contenedor de la tarea pendiente 
+
 export default function createPendingTask(todoPending) {
     const pendingClass = document.querySelector('#pendingClass');
 
@@ -5,6 +7,7 @@ export default function createPendingTask(todoPending) {
     todoPending.forEach(item => {
         const pendingTask = document.createElement('div');
         pendingTask.classList.add('pendingTask');
+        pendingTask.setAttribute('draggable', true)
 
         pendingClass.appendChild(pendingTask);
 
