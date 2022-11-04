@@ -1,3 +1,5 @@
+// Crea un modal 
+
 const modal = document.querySelector('#modal')
 const btnCloseAddModal = document.querySelector('#closeModal');
 
