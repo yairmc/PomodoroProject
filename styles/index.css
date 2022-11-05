@@ -63,7 +63,7 @@ span {
     border-style: none;
 }
 
-.addButton {
+.addButton, .doButton {
     font-weight: bold;
     margin-top: 30px;
     padding: 10px 30px;
@@ -103,14 +103,15 @@ span {
     border: 3px solid black ;
     height: 100px;
 }
-.pendingClass {
+
+.pendingClass,.doingClass {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 30px;
 }
 
-.pendingTask {
+.pendingTask,.doingTask{
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -121,12 +122,12 @@ span {
     width: 350px;
 }
 
-.pendingNameTask {
+.pendingNameTask,.doingNameTask{
     margin: 0;
     color: #0E00A9;
 }
 
-.pendingDescriptionTask {
+.pendingDescriptionTask, .doingDescriptionTask{
     margin: 0;
     height: auto;
     word-wrap: break-word;
