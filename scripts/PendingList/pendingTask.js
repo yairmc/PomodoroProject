@@ -57,16 +57,11 @@ export default function createPendingTask(todoPending) {
                     oldTaskPosition = i
                 }
             }
-            let auxNewTask = newTask;
             let auxOldTask = oldTask;
 
             pendingClass.replaceChild(newTask, oldTask)
             pendingClass.insertBefore(auxOldTask, newTask);
 
-            // const oldListItems=listItems;
-            // const newListItems=
-
-            // console.log(listItems);
 
         })
     })
