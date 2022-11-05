@@ -35,7 +35,7 @@ window.addEventListener('load', () => {
     })
 
     const listPend = document.querySelectorAll(".pendingTask")
-    console.log(listPend)
+    // console.log(listPend)
 
     listPend.forEach(element => {
         element.addEventListener('click', (e) => {

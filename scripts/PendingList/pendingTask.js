@@ -1,15 +1,13 @@
 // Crea el contenedor de la tarea pendiente 
+let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
+
 
 export default function createPendingTask(todoPending) {
     const pendingClass = document.querySelector('#pendingClass');
 
+
     pendingClass.innerHTML = "";
     todoPending.forEach(item => {
-
-        const pendingPosition = document.createElement('div');
-        pendingPosition.classList.add('pendingPosition')
-        pendingPosition.setAttribute('id', Math.floor(Math.random() * 30));
-        pendingClass.appendChild(pendingPosition);
 
         const pendingTask = document.createElement('div');
         pendingTask.classList.add('pendingTask');
@@ -28,28 +26,49 @@ export default function createPendingTask(todoPending) {
         pendingTaskDescription.innerText = item.description
 
         pendingTask.appendChild(pendingTaskName)
-        pendingTask.appendChild(pendingTaskDescription)
-        pendingPosition.appendChild(pendingTask)
+        pendingTask.appendChild(pendingTaskDescription);
+
+        let node = pendingClass.childNodes;
 
         pendingTask.addEventListener('dragstart', e => {
-
             e.dataTransfer.setData('id', e.target.id)
         })
-        pendingPosition.addEventListener('dragover', e => {
+
+        pendingTask.addEventListener('dragover', e => {
             e.preventDefault();
         })
 
-        pendingPosition.addEventListener('drop', e => {
-            // data de la position 
-            const taskPosition = pendingPosition.childNodes;
-            console.log(taskPosition[0]);
+        pendingTask.addEventListener('drop', e => {
+            // data de la Actual 
+            let newTask;
+            let oldTask;
+            let newTaskPosition;
+            let oldTaskPosition;
 
-            pendingPosition.removeChild(taskPosition[0]);
-            // data de la pendingTask
-            const idTask = e.dataTransfer.getData('id');
-            e.target.appendChild(document.getElementById(idTask))
+            for (let i = 0; i < node.length; i++) {
+                if (e.dataTransfer.getData('id') === node[i].id) {
+                    newTask = node[i];
+                    newTaskPosition = i;
+                }
+            }
+            for (let i = 0; i < node.length; i++) {
+                if (e.target.id === node[i].id) {
+                    oldTask = node[i];
+                    oldTaskPosition = i
+                }
+            }
+            let auxNewTask = newTask;
+
+            let auxOldTask = oldTask;
+
+            pendingClass.replaceChild(newTask, oldTask)
+            pendingClass.insertBefore(auxOldTask, newTask);
 
 
+            // const oldListItems=listItems;
+            // const newListItems=
+
+            // console.log(listItems);
 
         })
     })
