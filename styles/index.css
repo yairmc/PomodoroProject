@@ -98,7 +98,11 @@ span {
 }
 
 
-/* Principal List Tasks */
+/* Pending  Tasks */
+.pendingPosition{
+    border: 3px solid black ;
+    height: 100px;
+}
 
 .pendingClass,.doingClass {
     display: flex;

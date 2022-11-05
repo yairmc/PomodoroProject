@@ -1,6 +1,7 @@
 // Manda los datos del formulario de crear tareas a la lista de pendientes
 
 import { openModal, closeModal } from './scripts/PendingList/modal.js';
+
 import createPendingTask from './scripts/PendingList/pendingTask.js';
 import createDoingTask from './scripts/doingTask.js'
 
@@ -34,7 +35,7 @@ window.addEventListener('load', () => {
     })
 
     const listPend = document.querySelectorAll(".pendingTask")
-    console.log(listPend)
+    // console.log(listPend)
 
     listPend.forEach(element => {
         element.addEventListener('click', (e) => {
