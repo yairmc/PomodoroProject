@@ -1,6 +1,8 @@
 // Crea el contenedor de la tarea pendiente 
-let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
 
+// lista del local storage
+let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
+let node;
 
 export default function createPendingTask(todoPending) {
     const pendingClass = document.querySelector('#pendingClass');
@@ -9,26 +11,27 @@ export default function createPendingTask(todoPending) {
     pendingClass.innerHTML = "";
     todoPending.forEach(item => {
 
+        // Creando la tarea pendinete 
         const pendingTask = document.createElement('div');
         pendingTask.classList.add('pendingTask');
         pendingTask.setAttribute('id', Math.floor(Math.random() * 300))
         pendingTask.draggable = true;
-
         pendingClass.appendChild(pendingTask);
 
-
+        // Creando el contenido 
+        // Nombre
         const pendingTaskName = document.createElement('h3');
         pendingTaskName.classList.add('pendingNameTask');
         pendingTaskName.innerText = item.name;
-
+        // Descripcion 
         const pendingTaskDescription = document.createElement('h3');
         pendingTaskDescription.classList.add('pendingDescriptionTask');
         pendingTaskDescription.innerText = item.description
-
         pendingTask.appendChild(pendingTaskName)
         pendingTask.appendChild(pendingTaskDescription);
 
-        let node = pendingClass.childNodes;
+        // agregando la pending Task al nodo
+        node = pendingClass.childNodes;
 
         pendingTask.addEventListener('dragstart', e => {
             e.dataTransfer.setData('id', e.target.id)
@@ -57,13 +60,17 @@ export default function createPendingTask(todoPending) {
                     oldTaskPosition = i
                 }
             }
-            let auxOldTask = oldTask;
-
-            pendingClass.replaceChild(newTask, oldTask)
-            pendingClass.insertBefore(auxOldTask, newTask);
-
+            if (newTaskPosition > oldTaskPosition) {
+                console.log('mas');
+                pendingClass.insertBefore(newTask, oldTask);
+            }
+            else {
+                console.log('menos');
+                pendingClass.insertBefore(newTask, oldTask.nextSibling)
+            }
 
         })
-    })
 
+
+    })
 }
