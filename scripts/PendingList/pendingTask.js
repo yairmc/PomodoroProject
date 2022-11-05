@@ -58,7 +58,6 @@ export default function createPendingTask(todoPending) {
                 }
             }
             let auxNewTask = newTask;
-
             let auxOldTask = oldTask;
 
             pendingClass.replaceChild(newTask, oldTask)
