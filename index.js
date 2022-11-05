@@ -1,7 +1,7 @@
 // Manda los datos del formulario de crear tareas a la lista de pendientes
 
 import { openModal, closeModal } from './scripts/PendingList/modal.js';
-import createPendingTask from './scripts//PendingList/pendingTask.js'
+import createPendingTask from './scripts/PendingList/pendingTask.js'
 
 let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
 

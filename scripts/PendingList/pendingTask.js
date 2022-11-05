@@ -5,9 +5,16 @@ export default function createPendingTask(todoPending) {
 
     pendingClass.innerHTML = "";
     todoPending.forEach(item => {
+
+        const pendingPosition = document.createElement('div');
+        pendingPosition.classList.add('pendingPosition')
+        pendingPosition.setAttribute('id', Math.floor(Math.random() * 30));
+        pendingClass.appendChild(pendingPosition);
+
         const pendingTask = document.createElement('div');
         pendingTask.classList.add('pendingTask');
-        pendingTask.setAttribute('draggable', true)
+        pendingTask.setAttribute('id', Math.floor(Math.random() * 300))
+        pendingTask.draggable = true;
 
         pendingClass.appendChild(pendingTask);
 
@@ -22,5 +29,29 @@ export default function createPendingTask(todoPending) {
 
         pendingTask.appendChild(pendingTaskName)
         pendingTask.appendChild(pendingTaskDescription)
+        pendingPosition.appendChild(pendingTask)
+
+        pendingTask.addEventListener('dragstart', e => {
+
+            e.dataTransfer.setData('id', e.target.id)
+        })
+        pendingPosition.addEventListener('dragover', e => {
+            e.preventDefault();
+        })
+
+        pendingPosition.addEventListener('drop', e => {
+            // data de la position 
+            const taskPosition = pendingPosition.childNodes;
+            console.log(taskPosition[0]);
+
+            pendingPosition.removeChild(taskPosition[0]);
+            // data de la pendingTask
+            const idTask = e.dataTransfer.getData('id');
+            e.target.appendChild(document.getElementById(idTask))
+
+
+
+        })
     })
+
 }
