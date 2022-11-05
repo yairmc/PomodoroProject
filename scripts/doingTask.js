@@ -22,6 +22,7 @@ export default function createDoingTask(todoDoing) {
         const doButtonTaskDescription = document.createElement('input');
         doButtonTaskDescription.classList.add('doButton');
         doButtonTaskDescription.value = "Inicia Tarea"
+        doButtonTaskDescription.type = "button"
 
         doingTask.appendChild(doingTaskName)
         doingTask.appendChild(doingTaskDescription)
