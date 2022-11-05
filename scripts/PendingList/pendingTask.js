@@ -63,7 +63,6 @@ export default function createPendingTask(todoPending) {
             pendingClass.replaceChild(newTask, oldTask)
             pendingClass.insertBefore(auxOldTask, newTask);
 
-
             // const oldListItems=listItems;
             // const newListItems=
 
