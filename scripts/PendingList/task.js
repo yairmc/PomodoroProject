@@ -38,9 +38,6 @@ export default function pTask(item) {
 
     pendingTask.addEventListener('dragover', e => e.preventDefault())
 
-    // agregando la pending Task al nodo
-    node = pendingClass.childNodes;
-
     pendingTask.addEventListener('dragstart', e => e.dataTransfer.setData('id', e.target.id))
 
     pendingTask.addEventListener('dragover', e => e.preventDefault())
@@ -64,12 +61,22 @@ export default function pTask(item) {
         if (newTaskPosition > oldTaskPosition) pendingClass.insertBefore(newTask, oldTask);
         else pendingClass.insertBefore(newTask, oldTask.nextSibling)
     })
+
+
     buttonAddPendingTask.addEventListener('click', (e) => {
+        console.log(buttonAddPendingTask);
+
         let doingClick = listItems.find(task => task.name === e.path[1].firstChild.textContent)
         listDoingItems.push({ name: doingClick.name, description: doingClick.description, id: `task-${Math.floor(Math.random() * 300)}` });
         localStorage.setItem('myDoingList', JSON.stringify(listDoingItems));
         createDoingTask(listDoingItems)
         pendingClass.removeChild(pendingTask)
-
+        deletePendingTask(doingClick.id);
     })
+
+    const deletePendingTask = (id) => {
+        const newListItems = listItems.filter(task => task.id != id);
+        listItems = [...newListItems];
+        localStorage.setItem('myTodoList', JSON.stringify(listItems));
+    }
 }

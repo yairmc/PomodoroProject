@@ -104,14 +104,14 @@ span {
     height: 100px;
 }
 
-.pendingClass,.doingClass {
+.pendingClass,.doingClass, .finishClass {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 30px;
 }
 
-.pendingTask,.doingTask{
+.pendingTask,.doingTask, .finishTask{
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -122,12 +122,12 @@ span {
     width: 350px;
 }
 
-.pendingNameTask,.doingNameTask{
+.pendingNameTask,.doingNameTask, .finishNameTask{
     margin: 0;
     color: #0E00A9;
 }
 
-.pendingDescriptionTask, .doingDescriptionTask{
+.pendingDescriptionTask, .doingDescriptionTask, .finishDescriptionTask{
     margin: 0;
     height: auto;
     word-wrap: break-word;
@@ -135,6 +135,7 @@ span {
 .addPendingTask{
     background-color:#B9B2FF;
     margin: 10px;
+    width: 90%;
     padding: 7px;
     border-radius: 15px;
     color: black;
@@ -144,12 +145,15 @@ span {
 
 .timeContainer{
     display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .start{
     background-color:#28ca00;
     padding: 7px;
-    width: 130px;
+    width: 100px;
+    height: 20px;
     border-radius: 15px;
     color: black;
     font-weight: bold;
@@ -158,15 +162,36 @@ span {
 .stop{
     background-color:#e90000;
     padding: 7px;
-    width:130px;
+    height: 20px;
+    width:100px;
     border-radius: 15px;
     color: black;
     font-weight: bold;
     text-transform: uppercase;
+    text-decoration: none;
 }
 
 .timer{
     display: flex;
     gap: 20px;
     font-size:30px;
+    height: 50px;
+}
+
+.timer p{
+    margin: auto;
+    padding: 0;
+}
+
+/* finishTask */
+
+.finishTaskButton{
+    background-color:#B9B2FF;
+    border-radius: 15rem;
+    padding: 7px;
+    width: 90%;
+    height: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
