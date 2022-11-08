@@ -171,6 +171,18 @@ span {
     text-decoration: none;
 }
 
+.pause{
+    background-color:#e9ca00;
+    padding: 7px;
+    height: 20px;
+    width:100px;
+    border-radius: 15px;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
 .timer{
     display: flex;
     gap: 10px;

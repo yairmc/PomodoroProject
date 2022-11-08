@@ -5,6 +5,7 @@ let restTime = 5;
 let secondsTime = '00';
 
 export default function startTimer(dtask){
+    
     secondsTime = 59;
     let workMinutes = workTime - 1;
     let restMinutes = restTime - 1;
@@ -33,4 +34,8 @@ export default function startTimer(dtask){
     }
     setInterval(timeFunction, 1000)
 
+}
+
+function pausarTimer(minutes, seconds){
+    
 }
