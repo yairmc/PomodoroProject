@@ -1,4 +1,5 @@
 // Crea el contenedor de la tarea pendiente 
+import createDoingTask from '../doignList/doingTask.js'
 
 // lista del local storage
 let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
@@ -6,7 +7,6 @@ let node;
 
 export default function createPendingTask(todoPending) {
     const pendingClass = document.querySelector('#pendingClass');
-
 
     pendingClass.innerHTML = "";
     todoPending.forEach(item => {
@@ -27,26 +27,25 @@ export default function createPendingTask(todoPending) {
         const pendingTaskDescription = document.createElement('h3');
         pendingTaskDescription.classList.add('pendingDescriptionTask');
         pendingTaskDescription.innerText = item.description
+        //Boton
+        const buttonAddPendingTask = document.createElement('div');
+        buttonAddPendingTask.classList.add('addPendingTask');
+        buttonAddPendingTask.innerText = 'Iniciar'
         pendingTask.appendChild(pendingTaskName)
         pendingTask.appendChild(pendingTaskDescription);
+        pendingTask.appendChild(buttonAddPendingTask);
+
 
         // agregando la pending Task al nodo
         node = pendingClass.childNodes;
 
-        pendingTask.addEventListener('dragstart', e => {
-            e.dataTransfer.setData('id', e.target.id)
-        })
+        pendingTask.addEventListener('dragstart', e => e.dataTransfer.setData('id', e.target.id))
 
-        pendingTask.addEventListener('dragover', e => {
-            e.preventDefault();
-        })
+        pendingTask.addEventListener('dragover', e => e.preventDefault())
 
         pendingTask.addEventListener('drop', e => {
             // data de la Actual 
-            let newTask;
-            let oldTask;
-            let newTaskPosition;
-            let oldTaskPosition;
+            let newTask, oldTask, newTaskPosition, oldTaskPosition;
 
             for (let i = 0; i < node.length; i++) {
                 if (e.dataTransfer.getData('id') === node[i].id) {
@@ -60,17 +59,17 @@ export default function createPendingTask(todoPending) {
                     oldTaskPosition = i
                 }
             }
-            if (newTaskPosition > oldTaskPosition) {
-                console.log('mas');
-                pendingClass.insertBefore(newTask, oldTask);
-            }
-            else {
-                console.log('menos');
-                pendingClass.insertBefore(newTask, oldTask.nextSibling)
-            }
-
+            if (newTaskPosition > oldTaskPosition) pendingClass.insertBefore(newTask, oldTask);
+            else pendingClass.insertBefore(newTask, oldTask.nextSibling)
         })
 
-
+        buttonAddPendingTask.addEventListener('click', (e) => {
+            console.log(e.path[1]);
+            let doingClick = listItems.find(task => task.name === e.path[1].firstChild.textContent)
+            createDoingTask(doingClick)
+            pendingClass.removeChild(pendingTask)
+        })
     })
+
+
 }
