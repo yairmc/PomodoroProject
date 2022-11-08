@@ -3,7 +3,6 @@
 import { openModal, closeModal } from './scripts/PendingList/modal.js';
 
 import createPendingTask from './scripts/PendingList/pendingTask.js';
-import createDoingTask from './scripts/doingTask.js'
 
 let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
 
@@ -34,18 +33,6 @@ window.addEventListener('load', () => {
         closeModal()
     })
 
-    const listPend = document.querySelectorAll(".pendingTask")
-    // console.log(listPend)
-
-    listPend.forEach(element => {
-        element.addEventListener('click', (e) => {
-
-            console.log(e.target.firstChild)
-            
-            let doingClick = listItems.find(task=>task.name===e.target.firstChild.textContent)
-            createDoingTask(doingClick)
-        })
-    })
 
 
 });
