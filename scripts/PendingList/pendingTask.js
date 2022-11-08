@@ -1,4 +1,3 @@
-// Crea el contenedor de la tarea pendiente 
 import pTask from './task.js'
 
 export default function createPendingTask(todoPending) {

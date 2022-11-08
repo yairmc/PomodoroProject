@@ -1,12 +1,10 @@
 
 
-let workTime = 1;
+let workTime = 25;
 let restTime = 5;
 let secondsTime = '00';
 
 export default function startTimer(dtask){
-    console.log(dtask.children[3].children[0]);
-    console.log(dtask.children[3].children[1]);
     secondsTime = 59;
     let workMinutes = workTime - 1;
     let restMinutes = restTime - 1;

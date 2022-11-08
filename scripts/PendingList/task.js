@@ -64,8 +64,7 @@ export default function pTask(item) {
 
 
     buttonAddPendingTask.addEventListener('click', (e) => {
-        console.log(buttonAddPendingTask);
-
+        e.preventDefault();
         let doingClick = listItems.find(task => task.name === e.path[1].firstChild.textContent)
         listDoingItems.push({ name: doingClick.name, description: doingClick.description, id: `task-${Math.floor(Math.random() * 300)}` });
         localStorage.setItem('myDoingList', JSON.stringify(listDoingItems));

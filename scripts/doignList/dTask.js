@@ -1,5 +1,6 @@
 import startTimer from "./pomodoroTimer.js";
 import createFinishTask from "../finishList/finishTask.js";
+import {closeModalDoing, openModalDoing} from "./modal.js"
 
 let listDoingItems = localStorage.getItem('myDoingList') ? JSON.parse(localStorage.getItem('myDoingList')) : [];
 let finishListItems = localStorage.getItem('myFinishList') ? JSON.parse(localStorage.getItem('myFinishList')) : [];
@@ -9,8 +10,6 @@ export default function dTask(item) {
 
     const doingTask = document.createElement('div');
     doingTask.classList.add('doingTask');
-    doingTask.setAttribute('draggable', true)
-
     doingClass.appendChild(doingTask);
 
 
@@ -46,9 +45,14 @@ export default function dTask(item) {
 
     const minutes = document.createElement('p');
     minutes.setAttribute('id', 'minutes');
+    minutes.innerText="00"
+    
+    const points=document.createElement('p');
+    points.innerText=':'
 
     const seconds = document.createElement('p')
     seconds.setAttribute('id', 'seconds')
+    seconds.innerText="00"
 
     const finishTask = document.createElement('div');
     finishTask.classList.add('finishTaskButton')
@@ -57,7 +61,9 @@ export default function dTask(item) {
     doingTask.appendChild(timer)
     doingTask.appendChild(finishTask)
     timer.appendChild(minutes);
+    timer.appendChild(points);
     timer.appendChild(seconds);
+
 
 
     start.addEventListener('click', (e) => {
@@ -65,20 +71,31 @@ export default function dTask(item) {
     })
 
     finishTask.addEventListener('click', (e) => {
-        let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
-        finishListItems.push({ name: finishClick.name, description: finishClick.description, id: `task-${Math.floor(Math.random() * 300)}` });
-        localStorage.setItem('myFinishList', JSON.stringify(finishListItems));
-        createFinishTask(finishListItems);
-        deleteDoingTask(finishClick.id);
+        e.preventDefault();
+        let acept=confirm("Enserio Terminaste tu tarea?");
+        if (acept === true) {
+            openModalDoing();
+            let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
+            finishListItems.push({ name: finishClick.name, description: finishClick.description, id: `task-${Math.floor(Math.random() * 300)}` });
+            localStorage.setItem('myFinishList', JSON.stringify(finishListItems));
+            createFinishTask(finishListItems);
+            doingClass.removeChild(doingTask);
+            deleteDoingTask(finishClick.id);
+            closeModalDoing()
+        } else {
+            return;
+        }
+
+
     })
 
-    const deleteDoingTask=(id)=>{
-        const newList=listDoingItems.filter(task=> task.id!=id);
-        listDoingItems=[...newList];
-        localStorage.setItem('myDoingList',JSON.stringify(listDoingItems))
+    const deleteDoingTask = (id) => {
+        const newList = listDoingItems.filter(task => task.id != id);
+        listDoingItems = [...newList];
+        localStorage.setItem('myDoingList', JSON.stringify(listDoingItems))
     }
 
-    
+
 }
 
 
