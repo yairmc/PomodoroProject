@@ -132,7 +132,7 @@ span {
     height: auto;
     word-wrap: break-word;
 }
-.addPendingTask, .doButton{
+.addPendingTask{
     background-color:#B9B2FF;
     margin: 10px;
     padding: 7px;
@@ -140,4 +140,33 @@ span {
     color: black;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.timeContainer{
+    display: flex;
+}
+
+.start{
+    background-color:#28ca00;
+    padding: 7px;
+    width: 130px;
+    border-radius: 15px;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.stop{
+    background-color:#e90000;
+    padding: 7px;
+    width:130px;
+    border-radius: 15px;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.timer{
+    display: flex;
+    gap: 20px;
+    font-size:30px;
 }
