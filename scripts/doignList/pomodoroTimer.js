@@ -1,12 +1,13 @@
 
 
-let workTime = 25;
-let restTime = 5;
+let workTime = 1;
+let restTime = 2;
 let secondsTime = '00';
+let finishWorkTime;
+let finishRestTime;
 
-export default function startTimer(dtask){
-    
-    secondsTime = 59;
+export default function startTimer(dtask) {
+    secondsTime = 10;
     let workMinutes = workTime - 1;
     let restMinutes = restTime - 1;
 
@@ -14,28 +15,30 @@ export default function startTimer(dtask){
 
     let timeFunction = () => {
         dtask.children[3].children[0].innerHTML = workMinutes;
-        dtask.children[3].children[1].innerHTML = secondsTime;
+        dtask.children[3].children[2].innerHTML = secondsTime;
 
-        secondsTime=secondsTime-1;
+        secondsTime = secondsTime - 1;
 
-        if(secondsTime===0){
-            workMinutes=workMinutes-1;
-            if(workMinutes===-1){
-                if(breakCount%2===0){
-                    workMinutes=restMinutes;
+        if (secondsTime === 0) {
+            workMinutes = workMinutes - 1;
+            if (workMinutes === -1) {
+                if (breakCount % 2 === 0) {
+                    workMinutes = restMinutes;
                     breakCount++;
-                }else{
-                    workMinutes=workTime;
+                    finishWorkTime = confirm("Termino tu sesion de pomodoro, descanza");
+                } else {
+                    workMinutes = workTime;
                     breakCount++;
+                    finishRestTime = confirm("Termino tu descanzo, sigue")
                 }
             }
-            secondsTime=59;
+            secondsTime = 10;
         }
     }
     setInterval(timeFunction, 1000)
 
 }
 
-function pausarTimer(minutes, seconds){
-    
+function pausarTimer(minutes, seconds) {
+
 }

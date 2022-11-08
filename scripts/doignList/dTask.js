@@ -55,6 +55,9 @@ export default function dTask(item) {
     seconds.setAttribute('id', 'seconds')
     seconds.innerText = "00"
 
+    const points=document.createElement('p');
+    points.innerText=':';
+
     doingTask.appendChild(panel)
     panel.appendChild(start)
     panel.appendChild(stop)
@@ -63,9 +66,8 @@ export default function dTask(item) {
     doingTask.appendChild(timer)
     doingTask.appendChild(finishTask)
     timer.appendChild(minutes);
+    timer.appendChild(points)
     timer.appendChild(seconds);
-
-
 
     start.addEventListener('click', (e) => {
         startTimer(doingTask);
