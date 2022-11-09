@@ -108,6 +108,7 @@ span {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
 }
 
@@ -119,15 +120,17 @@ span {
     border-radius: 15px;
     background-color: #E8E8E8;
     box-shadow: -6px 6px 2px 1px rgba(0, 0, 0, 0.3);
-    width: 350px;
+    width: 400px;
 }
 
 .pendingNameTask,.doingNameTask, .finishNameTask{
+    font-size: 30px;
     margin: 0;
     color: #0E00A9;
 }
 
 .pendingDescriptionTask, .doingDescriptionTask, .finishDescriptionTask{
+    font-size: 20px;
     margin: 0;
     height: auto;
     word-wrap: break-word;
@@ -135,12 +138,12 @@ span {
 .addPendingTask{
     background-color:#B9B2FF;
     margin: 10px;
-    width: 90%;
+    width: 50%;
     padding: 7px;
     border-radius: 15px;
     color: black;
     font-weight: bold;
-    text-transform: uppercase;
+    font-size: 25px;
 }
 
 .timeContainer{
@@ -159,7 +162,7 @@ span {
     font-weight: bold;
     text-transform: uppercase;
 }
-.stop{
+.cancel{
     background-color:#e90000;
     padding: 7px;
     height: 20px;
@@ -172,7 +175,31 @@ span {
 }
 
 .pause{
-    background-color:#e9ca00;
+    background-color:#e9b700;
+    padding: 7px;
+    height: 20px;
+    width:100px;
+    border-radius: 15px;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.reanudar{
+    background-color:#e9b700;
+    padding: 7px;
+    height: 20px;
+    width:150px;
+    border-radius: 15px;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.restore{
+    background-color:#B9B2FF;
     padding: 7px;
     height: 20px;
     width:100px;
@@ -187,7 +214,6 @@ span {
     display: flex;
     gap: 10px;
     font-size:30px;
-    height: 50px;
 }
 
 .timer p{
@@ -201,9 +227,9 @@ span {
     background-color:#B9B2FF;
     border-radius: 15rem;
     padding: 7px;
-    width: 90%;
+    width: 50%;
     height: 30px;
-    font-size: 30px;
+    font-size:25px;
     font-weight: bold;
     margin-bottom: 10px;
 }
