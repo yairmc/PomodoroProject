@@ -1,4 +1,4 @@
-import { startTimer, pausarTimer } from "./pomodoroTimer.js";
+import { startTimer, pausarTimer, reanudarTimer, restoreTimer } from "./pomodoroTimer.js";
 import createFinishTask from "../finishList/finishTask.js";
 import { closeModalDoing, openModalDoing } from "./modal.js"
 
@@ -31,14 +31,10 @@ export default function dTask(item) {
     start.classList.add('start');
     start.innerText = "start"
 
-    const stop = document.createElement('a')
-    stop.classList.add('stop');
-    stop.href = '/'
-    stop.innerText = "stop"
-
-    const finishTask = document.createElement('div');
-    finishTask.classList.add('finishTaskButton')
-    finishTask.innerText = 'Finish Task';
+    const cancel = document.createElement('a')
+    cancel.classList.add('cancel');
+    cancel.href = '/'
+    cancel.innerText = "cancel"
 
     const pause = document.createElement('p');
     pause.classList.add('pause');
@@ -47,6 +43,15 @@ export default function dTask(item) {
     const reanudar = document.createElement('p');
     reanudar.classList.add('reanudar');
     reanudar.innerText = 'reanudar';
+
+    const restore = document.createElement('p');
+    restore.classList.add('restore');
+    restore.innerText = 'restore';
+
+
+    const finishTask = document.createElement('div');
+    finishTask.classList.add('finishTaskButton')
+    finishTask.innerText = 'Finish Task';
 
     const timer = document.createElement('div');
     timer.classList.add('timer');
@@ -65,30 +70,43 @@ export default function dTask(item) {
     doingTask.appendChild(panel)
 
     panel.appendChild(start)
-    panel.appendChild(stop)
 
     doingTask.appendChild(timer)
     doingTask.appendChild(finishTask)
 
-    timer.appendChild(minutes);
-    timer.appendChild(points)
-    timer.appendChild(seconds);
-
     start.addEventListener('click', (e) => {
         startTimer(doingTask);
-        panel.removeChild(stop);
         panel.removeChild(start);
         panel.appendChild(pause);
-        panel.appendChild(stop);
+        panel.appendChild(restore);
+        panel.appendChild(cancel);
+        timer.appendChild(minutes);
+        timer.appendChild(points)
+        timer.appendChild(seconds);
+
+        doingClass.replaceChildren(doingTask)
     })
 
     pause.addEventListener('click', (e) => {
         pausarTimer();
         panel.removeChild(pause);
-        panel.removeChild(stop);
+        panel.removeChild(cancel);
+        panel.removeChild(restore)
         panel.appendChild(reanudar);
-        panel.appendChild(stop);
     })
+
+    reanudar.addEventListener('click', (e) => {
+        reanudarTimer(doingTask);
+        panel.removeChild(reanudar);
+        panel.appendChild(pause);
+        panel.appendChild(restore);
+        panel.appendChild(cancel);
+    })
+
+    restore.addEventListener('click', (e) => {
+        restoreTimer(doingTask);
+    })
+
     finishTask.addEventListener('click', (e) => {
         e.preventDefault();
         let acept = confirm("Enserio Terminaste tu tarea?");
