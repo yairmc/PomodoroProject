@@ -1,4 +1,4 @@
-import startTimer from "./pomodoroTimer.js";
+import { startTimer, pausarTimer } from "./pomodoroTimer.js";
 import createFinishTask from "../finishList/finishTask.js";
 import { closeModalDoing, openModalDoing } from "./modal.js"
 
@@ -44,6 +44,10 @@ export default function dTask(item) {
     pause.classList.add('pause');
     pause.innerText = 'pausa';
 
+    const reanudar = document.createElement('p');
+    reanudar.classList.add('reanudar');
+    reanudar.innerText = 'reanudar';
+
     const timer = document.createElement('div');
     timer.classList.add('timer');
 
@@ -55,16 +59,17 @@ export default function dTask(item) {
     seconds.setAttribute('id', 'seconds')
     seconds.innerText = "00"
 
-    const points=document.createElement('p');
-    points.innerText=':';
+    const points = document.createElement('p');
+    points.innerText = ':';
 
     doingTask.appendChild(panel)
+
     panel.appendChild(start)
     panel.appendChild(stop)
 
-    doingTask.appendChild(finishTask)
     doingTask.appendChild(timer)
     doingTask.appendChild(finishTask)
+
     timer.appendChild(minutes);
     timer.appendChild(points)
     timer.appendChild(seconds);
@@ -78,9 +83,10 @@ export default function dTask(item) {
     })
 
     pause.addEventListener('click', (e) => {
+        pausarTimer();
         panel.removeChild(pause);
         panel.removeChild(stop);
-        panel.appendChild(start);
+        panel.appendChild(reanudar);
         panel.appendChild(stop);
     })
     finishTask.addEventListener('click', (e) => {
@@ -98,8 +104,6 @@ export default function dTask(item) {
         } else {
             return;
         }
-
-
     })
 
     const deleteDoingTask = (id) => {
