@@ -107,11 +107,16 @@ export default function dTask(item) {
 
     finishTask.addEventListener('click', (e) => {
         e.preventDefault();
+        
         let acept = confirm("Enserio Terminaste tu tarea?");
         if (acept === true) {
             openModalDoing();
             let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
-            finishListItems.push({ name: finishClick.name, description: finishClick.description, id: `task-${Math.floor(Math.random() * 300)}` });
+            const Task={ name: finishClick.name,
+                 description: finishClick.description, 
+                 id: `task-${Math.floor(Math.random() * 300)}`,
+                 fechaT:Date.now() }
+            finishListItems.push(Task);
             localStorage.setItem('myFinishList', JSON.stringify(finishListItems));
             createFinishTask(finishListItems);
             doingClass.removeChild(doingTask);

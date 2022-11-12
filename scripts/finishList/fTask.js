@@ -14,6 +14,12 @@ export default function fTask(item){
     finishTaskDescription.classList.add('finishDescriptionTask');
     finishTaskDescription.innerText=item.description;
 
+    const finishTaskFechaT=document.createElement('h6');
+    finishTaskFechaT.classList.add('finishFechaT');
+    finishTaskFechaT.innerText=new Date(item.fechaT).toLocaleString()
+
     finishTask.appendChild(finishTaskName);
     finishTask.appendChild(finishTaskDescription);
+    finishTask.appendChild(finishTaskFechaT);
+
 }
