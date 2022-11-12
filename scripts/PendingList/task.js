@@ -2,7 +2,9 @@ import createDoingTask from "../doignList/doingTask.js";
 
 let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
 let listDoingItems = localStorage.getItem('myDoingList') ? JSON.parse(localStorage.getItem('myDoingList')) : [];
+const pendingClass = document.querySelector('#pendingClass');
 
+// Funcion que crea las tareas pendientes individualmente 
 export default function pTask(item) {
     createDoingTask(listDoingItems);
     let node;
@@ -10,7 +12,7 @@ export default function pTask(item) {
     // Creando la tarea pendinete 
     const pendingTask = document.createElement('div');
     pendingTask.classList.add('pendingTask');
-    pendingTask.setAttribute('id', Math.floor(Math.random() * 300))
+    pendingTask.setAttribute('id', Math.floor(Math.random() * 300));
     pendingTask.draggable = true;
     pendingClass.appendChild(pendingTask);
 
@@ -27,6 +29,7 @@ export default function pTask(item) {
     const buttonAddPendingTask = document.createElement('div');
     buttonAddPendingTask.classList.add('addPendingTask');
     buttonAddPendingTask.innerText = 'Iniciar'
+
     pendingTask.appendChild(pendingTaskName)
     pendingTask.appendChild(pendingTaskDescription);
     pendingTask.appendChild(buttonAddPendingTask);
@@ -38,12 +41,8 @@ export default function pTask(item) {
 
     pendingTask.addEventListener('dragover', e => e.preventDefault())
 
-    pendingTask.addEventListener('dragstart', e => e.dataTransfer.setData('id', e.target.id))
-
-    pendingTask.addEventListener('dragover', e => e.preventDefault())
 
     pendingTask.addEventListener('drop', e => {
-        // data de la Actual 
         let newTask, oldTask, newTaskPosition, oldTaskPosition;
 
         for (let i = 0; i < node.length; i++) {
@@ -61,7 +60,6 @@ export default function pTask(item) {
         if (newTaskPosition > oldTaskPosition) pendingClass.insertBefore(newTask, oldTask);
         else pendingClass.insertBefore(newTask, oldTask.nextSibling)
     })
-
 
     buttonAddPendingTask.addEventListener('click', (e) => {
         e.preventDefault();

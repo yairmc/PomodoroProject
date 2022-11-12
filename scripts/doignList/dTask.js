@@ -35,7 +35,7 @@ export default function dTask(item) {
     cancel.classList.add('cancel');
     cancel.href = '/'
     cancel.innerText = "cancel"
-
+    
     const pause = document.createElement('p');
     pause.classList.add('pause');
     pause.innerText = 'pausa';
@@ -103,9 +103,7 @@ export default function dTask(item) {
         panel.appendChild(cancel);
     })
 
-    restore.addEventListener('click', (e) => {
-        restoreTimer(doingTask);
-    })
+    restore.addEventListener('click', (e) =>  restoreTimer(doingTask))
 
     finishTask.addEventListener('click', (e) => {
         e.preventDefault();

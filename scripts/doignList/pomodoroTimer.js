@@ -1,14 +1,12 @@
 let workTime = 1;
 let restTime = 2;
-let secondsTime = '00';
 let workMinutes;
 let timerCount;
 
 const startTimer = (dtask) => {
-    secondsTime = 10;
+    let secondsTime = 10;
     workMinutes = workTime - 1;
     let restMinutes = restTime - 1;
-
     let breakCount = 0;
 
     let timeFunction = () => {
@@ -43,7 +41,6 @@ function pausarTimer() {
 
 function reanudarTimer(dtask) {
     let restMinutes = restTime - 1;
-
     let breakCount = 0;
 
     let timeFunction = () => {
@@ -80,8 +77,8 @@ function restoreTimer(dtask) {
     else {
         return
     }
-
 }
+
 export {
     startTimer,
     pausarTimer,
