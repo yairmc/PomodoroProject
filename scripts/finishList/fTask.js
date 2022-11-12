@@ -1,8 +1,6 @@
 export default function fTask(item){
     const finishClass= document.querySelector('#finishClass');
 
-    finishClass.innerHTML+='';
-
     const finishTask=document.createElement('div');
     finishTask.classList.add('finishTask');
 
@@ -18,5 +16,4 @@ export default function fTask(item){
 
     finishTask.appendChild(finishTaskName);
     finishTask.appendChild(finishTaskDescription);
-
 }
