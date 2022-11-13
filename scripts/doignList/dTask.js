@@ -1,12 +1,21 @@
 import { startTimer, pausarTimer, reanudarTimer, restoreTimer } from "./pomodoroTimer.js";
 import createFinishTask from "../finishList/finishTask.js";
 import { closeModalDoing, openModalDoing } from "./modal.js"
+import createPendingTask from "../PendingList/pendingTask.js"
+import { closeModalDoing2, openModalDoing2 } from "./modal2.js";
 
+
+let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
 let listDoingItems = localStorage.getItem('myDoingList') ? JSON.parse(localStorage.getItem('myDoingList')) : [];
 let finishListItems = localStorage.getItem('myFinishList') ? JSON.parse(localStorage.getItem('myFinishList')) : [];
 
 export default function dTask(item) {
     createFinishTask(finishListItems)
+//
+    const toPendingTask = document.createElement('div');
+    toPendingTask.classList.add('toPendingTask')
+    toPendingTask.innerText = 'Regresar Tarea';
+//
 
     const doingTask = document.createElement('div');
     doingTask.classList.add('doingTask');
@@ -67,12 +76,13 @@ export default function dTask(item) {
     const points = document.createElement('p');
     points.innerText = ':';
 
-    doingTask.appendChild(panel)
+    doingTask.appendChild(panel);
 
-    panel.appendChild(start)
+    panel.appendChild(start);
 
-    doingTask.appendChild(timer)
-    doingTask.appendChild(finishTask)
+    doingTask.appendChild(timer);
+    doingTask.appendChild(finishTask);
+    doingTask.appendChild(toPendingTask);
 
     start.addEventListener('click', (e) => {
         startTimer(doingTask);
@@ -81,7 +91,7 @@ export default function dTask(item) {
         panel.appendChild(restore);
         panel.appendChild(cancel);
         timer.appendChild(minutes);
-        timer.appendChild(points)
+        timer.appendChild(points);
         timer.appendChild(seconds);
 
         doingClass.replaceChildren(doingTask)
@@ -104,6 +114,34 @@ export default function dTask(item) {
     })
 
     restore.addEventListener('click', (e) =>  restoreTimer(doingTask))
+
+
+
+    //Regresar la lista a pendientes
+    toPendingTask.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        let acept = confirm("Quieres regresar la tarea a pendientes?");
+        if (acept === true) {
+            openModalDoing2();
+            let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
+            const Task={ name: finishClick.name,
+                 description: finishClick.description, 
+                 id: `task-${Math.floor(Math.random() * 300)}`,
+                 fechaT:Date.now() }
+            listItems.push(Task);
+            localStorage.setItem('myTodoList', JSON.stringify(listItems));
+            createPendingTask(listItems);
+            doingClass.removeChild(doingTask);
+            deleteDoingTask(finishClick.id);
+            closeModalDoing2()
+        } else {
+            return;
+        }
+    })
+
+
+    //
 
     finishTask.addEventListener('click', (e) => {
         e.preventDefault();
