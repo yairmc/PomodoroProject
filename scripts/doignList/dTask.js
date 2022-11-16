@@ -115,7 +115,33 @@ export default function dTask(item) {
 
     restore.addEventListener('click', (e) =>  restoreTimer(doingTask))
 
+    //Regresar la lista a pendientes
+   // toPendingTask.addEventListener('click', (e) => {
+       // e.preventDefault();
+        
+       // let acept = confirm("Quieres regresar la tarea a pendientes?");
+       // if (acept === true) {
 
+        //    doingClass.removeChild(doingTask);
+
+         //   openModalDoing2();
+         //   let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
+         //   const Task={ name: finishClick.name,
+           //      description: finishClick.description, 
+         //        id: `task-${Math.floor(Math.random() * 300)}`
+         //        }
+         //   listItems.push(Task);
+        //    localStorage.setItem('myTodoList', JSON.stringify(listItems));
+       //     createPendingTask(listItems);
+            //console.log((doingTask.parentNode.removeChild(doingTask)));
+            
+       //     console.log(Task);
+        //    deleteDoingTask(Task.id);
+       //     closeModalDoing2()
+      //  } else {
+      //     return;
+     //   }
+    //})
 
     //Regresar la lista a pendientes
     toPendingTask.addEventListener('click', (e) => {
@@ -124,15 +150,19 @@ export default function dTask(item) {
         let acept = confirm("Quieres regresar la tarea a pendientes?");
         if (acept === true) {
             openModalDoing2();
-            let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
+            let finishClick = listDoingItems.find(task => {
+                console.log(task);
+
+                return task.name === e.path[1].firstChild.textContent})
+                console.log(finishClick)
+            doingClass.removeChild(doingTask);
             const Task={ name: finishClick.name,
                  description: finishClick.description, 
-                 id: `task-${Math.floor(Math.random() * 300)}`,
-                 fechaT:Date.now() }
+                 id: finishClick.id}
             listItems.push(Task);
             localStorage.setItem('myTodoList', JSON.stringify(listItems));
             createPendingTask(listItems);
-            doingClass.removeChild(doingTask);
+           // doingClass.removeChild(doingTask);
             deleteDoingTask(finishClick.id);
             closeModalDoing2()
         } else {
@@ -140,12 +170,9 @@ export default function dTask(item) {
         }
     })
 
-
-    //
-
+    //Prog
     finishTask.addEventListener('click', (e) => {
         e.preventDefault();
-        
         let acept = confirm("Enserio Terminaste tu tarea?");
         if (acept === true) {
             openModalDoing();
@@ -157,6 +184,7 @@ export default function dTask(item) {
             finishListItems.push(Task);
             localStorage.setItem('myFinishList', JSON.stringify(finishListItems));
             createFinishTask(finishListItems);
+            //console.log(doingTask.parentElement)
             doingClass.removeChild(doingTask);
             deleteDoingTask(finishClick.id);
             closeModalDoing()
