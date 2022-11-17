@@ -123,6 +123,7 @@ export default function dTask(item) {
     toPendingTask.addEventListener('click', (e) => {
         e.preventDefault();
 
+
         let acept = confirm("Quieres regresar la tarea a pendientes?");
         if (acept === true) {
             openModalDoing2();
@@ -131,14 +132,12 @@ export default function dTask(item) {
                 name: finishClick.name,
                 description: finishClick.description,
                 id: `task-${Math.floor(Math.random() * 300)}`,
-                fechaT: Date.now()
             }
             listItems.push(Task);
             localStorage.setItem('myTodoList', JSON.stringify(listItems));
-            createPendingTask(listItems);
-            doingClass.removeChild(doingTask);
-            deleteDoingTask(finishClick.id);
             closeModalDoing2()
+            createPendingTask(listItems);
+            deleteDoingTask(finishClick.id);
         } else {
             return;
         }
@@ -159,10 +158,10 @@ export default function dTask(item) {
             }
             finishListItems.push(Task);
             localStorage.setItem('myFinishList', JSON.stringify(finishListItems));
-            createFinishTask(finishListItems);
-            doingClass.removeChild(doingTask);
-            deleteDoingTask(finishClick.id);
             closeModalDoing()
+            createFinishTask(finishListItems);
+            deleteDoingTask(finishClick.id);
+
         } else {
             return;
         }

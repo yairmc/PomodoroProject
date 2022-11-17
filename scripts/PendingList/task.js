@@ -71,6 +71,7 @@ export default function pTask(item) {
         createDoingTask(listDoingItems)
         pendingClass.removeChild(pendingTask)
         deletePendingTask(doingClick.id);
+        location.reload();
     })
 
     const deletePendingTask = (id) => {

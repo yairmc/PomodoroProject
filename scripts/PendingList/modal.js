@@ -10,6 +10,7 @@ function openModal() {
 function closeModal() {
     btnCloseAddModal.addEventListener("click", () => {
         modal.close()
+        location.reload();
     })
 
 }

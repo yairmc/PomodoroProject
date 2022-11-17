@@ -2,9 +2,10 @@ let workTime = 1;
 let restTime = 2;
 let workMinutes;
 let timerCount;
-
+ let secondsTime = 10;
+ 
 const startTimer = (dtask) => {
-    let secondsTime = 10;
+   
     workMinutes = workTime - 1;
     let restMinutes = restTime - 1;
     let breakCount = 0;
