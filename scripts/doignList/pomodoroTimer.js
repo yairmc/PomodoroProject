@@ -2,10 +2,10 @@ let workTime = 1;
 let restTime = 2;
 let workMinutes;
 let timerCount;
- let secondsTime = 10;
- 
+let secondsTime = 10;
+
 const startTimer = (dtask) => {
-   
+
     workMinutes = workTime - 1;
     let restMinutes = restTime - 1;
     let breakCount = 0;
@@ -72,6 +72,9 @@ function reanudarTimer(dtask) {
 function restoreTimer(dtask) {
     let confirmacion = confirm("Seguro quieres restablecer el pomodoro?")
     if (confirmacion) {
+        workTime = 1;
+        restTime = 2;
+        secondsTime = 10;
         clearInterval(timerCount);
         startTimer(dtask)
     }

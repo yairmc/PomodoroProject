@@ -1,110 +1,6 @@
-body {
-    background-color: #F3F3F3;
-    font-weight: bold;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-span {
-    color: #0E00A9;
-    font-size: large;
-}
-
-/* Header  */
-
-.header {
-    background-color: #B9B2FF;
-    padding: 30px 0;
-    text-align: center;
-    font-size: large;
-    text-transform: uppercase;
-}
-
-.header span {
-    font-size: xx-large;
-}
-
-/* Columns tasks */
-.content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: larger;
-    margin: 0 30px;
-    gap: 30px;
-}
-
-.titleContent {
-    text-align: center;
-    position: relative;
-    height: 150px;
-}
 
 
-/* Add New Task Form */
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 15px;
-    background-color: #E8E8E8;
-    box-shadow: -6px 6px 2px 1px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    height: 350px;
-}
-
-.inputNameTask {
-    border-radius: 15px;
-    padding: 10px 0;
-    border-style: none;
-}
-
-.inputDescriptionTask {
-    border-radius: 15px;
-    border-style: none;
-}
-
-.addButton {
-    font-weight: bold;
-    margin-top: 30px;
-    padding: 10px 30px;
-    border-style: none;
-    background-color: #B9B2FF;
-    border-radius: 10px;
-}
-
-/* Modal Add */
-.addModalContent {
-    border-style: none;
-    background-color: #27C100;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.addModalContent img {
-    width: 250px;
-    height: 250px;
-    color: black;
-    background-position: center;
-}
-
-.addModalContent h2 {
-    color: #F3F3F3;
-    font-weight: bold;
-    font-size: 48px;
-}
-
-.addModalContent::backdrop {
-    background-color: rgba(0, 0, 0, 0.4)
-}
-
-
-/* Pending  Tasks */
-.pendingPosition{
-    border: 3px solid black ;
-    height: 100px;
-}
-
-.pendingClass,.doingClass, .finishClass {
+.doingClass {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -112,7 +8,7 @@ span {
     gap: 30px;
 }
 
-.pendingTask,.doingTask, .finishTask{
+.doingTask{
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -123,28 +19,19 @@ span {
     width: 400px;
 }
 
-.pendingNameTask,.doingNameTask, .finishNameTask{
+.doingNameTask{
     font-size: 30px;
     margin: 0;
     color: #0E00A9;
 }
 
-.pendingDescriptionTask, .doingDescriptionTask, .finishDescriptionTask{
+ .doingDescriptionTask{
     font-size: 20px;
     margin: 0;
     height: auto;
     word-wrap: break-word;
 }
-.addPendingTask{
-    background-color:#B9B2FF;
-    margin: 10px;
-    width: 50%;
-    padding: 7px;
-    border-radius: 15px;
-    color: black;
-    font-weight: bold;
-    font-size: 25px;
-}
+
 
 .timeContainer{
     display: flex;
@@ -161,6 +48,7 @@ span {
     color: black;
     font-weight: bold;
     text-transform: uppercase;
+    cursor: pointer;
 }
 .cancel{
     background-color:#e90000;
@@ -172,6 +60,7 @@ span {
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .pause{
@@ -184,6 +73,7 @@ span {
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .reanudar{
@@ -196,6 +86,7 @@ span {
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .restore{
@@ -208,6 +99,7 @@ span {
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .timer{
@@ -221,8 +113,6 @@ span {
     padding: 0;
 }
 
-/* finishTask */
-
 .finishTaskButton{
     background-color:#B9B2FF;
     border-radius: 15rem;
@@ -232,8 +122,20 @@ span {
     font-size:25px;
     font-weight: bold;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
+.toPendingTask{
+    background-color:#e90000;
+    border-radius: 15rem;
+    padding: 7px;
+    width: 50%;
+    height: 30px;
+    font-size:25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
 
 /* Moddal Doing Task  */
 .adviceModal {
@@ -252,8 +154,6 @@ span {
     height: 250px;
     color: black;
     background-position: center;
+    cursor: pointer;
 }
-.finishFechaT {
-    color:rgb(224, 17, 131);
 
-}

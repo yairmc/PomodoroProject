@@ -13,11 +13,7 @@ createDoingTask(listDoingItems)
 
 export default function dTask(item) {
     createFinishTask(finishListItems)
-    //
-    const toPendingTask = document.createElement('div');
-    toPendingTask.classList.add('toPendingTask')
-    toPendingTask.innerText = 'Regresar Tarea';
-    //
+   
 
     const doingTask = document.createElement('div');
     doingTask.classList.add('doingTask');
@@ -63,6 +59,12 @@ export default function dTask(item) {
     const finishTask = document.createElement('div');
     finishTask.classList.add('finishTaskButton')
     finishTask.innerText = 'Finish Task';
+
+
+     const toPendingTask = document.createElement('div');
+     toPendingTask.classList.add('toPendingTask')
+     toPendingTask.innerText = 'Regresar Tarea';
+
 
     const timer = document.createElement('div');
     timer.classList.add('timer');

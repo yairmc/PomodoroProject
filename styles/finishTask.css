@@ -1,0 +1,38 @@
+
+ .finishClass {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+ .finishTask{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    background-color: #E8E8E8;
+    box-shadow: -6px 6px 2px 1px rgba(0, 0, 0, 0.3);
+    width: 400px;
+}
+
+ .finishNameTask{
+    font-size: 30px;
+    margin: 0;
+    color: #0E00A9;
+}
+
+  .finishDescriptionTask{
+    font-size: 20px;
+    margin: 0;
+    height: auto;
+    word-wrap: break-word;
+}
+
+.finishFechaT {
+    font-size: 30px;
+    margin:10px 0;
+    color:#B9B2FF;
+}
