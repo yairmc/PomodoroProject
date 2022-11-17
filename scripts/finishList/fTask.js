@@ -1,3 +1,9 @@
+import createFinishTask from "./finishTask.js";
+
+let finishListItems = localStorage.getItem('myFinishList') ? JSON.parse(localStorage.getItem('myFinishList')) : [];
+
+createFinishTask(finishListItems)
+
 export default function fTask(item){
     const finishClass= document.querySelector('#finishClass');
 

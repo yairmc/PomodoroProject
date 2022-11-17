@@ -1,4 +1,5 @@
 import createDoingTask from "../doignList/doingTask.js";
+import createPendingTask from "./pendingTask.js";
 
 let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
 let listDoingItems = localStorage.getItem('myDoingList') ? JSON.parse(localStorage.getItem('myDoingList')) : [];

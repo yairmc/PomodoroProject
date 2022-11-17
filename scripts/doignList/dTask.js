@@ -3,19 +3,21 @@ import createFinishTask from "../finishList/finishTask.js";
 import { closeModalDoing, openModalDoing } from "./modal.js"
 import createPendingTask from "../PendingList/pendingTask.js"
 import { closeModalDoing2, openModalDoing2 } from "./modal2.js";
+import createDoingTask from "./doingTask.js";
 
 
 let listItems = localStorage.getItem('myTodoList') ? JSON.parse(localStorage.getItem('myTodoList')) : [];
 let listDoingItems = localStorage.getItem('myDoingList') ? JSON.parse(localStorage.getItem('myDoingList')) : [];
 let finishListItems = localStorage.getItem('myFinishList') ? JSON.parse(localStorage.getItem('myFinishList')) : [];
+createDoingTask(listDoingItems)
 
 export default function dTask(item) {
     createFinishTask(finishListItems)
-//
+    //
     const toPendingTask = document.createElement('div');
     toPendingTask.classList.add('toPendingTask')
     toPendingTask.innerText = 'Regresar Tarea';
-//
+    //
 
     const doingTask = document.createElement('div');
     doingTask.classList.add('doingTask');
@@ -44,7 +46,7 @@ export default function dTask(item) {
     cancel.classList.add('cancel');
     cancel.href = '/'
     cancel.innerText = "cancel"
-    
+
     const pause = document.createElement('p');
     pause.classList.add('pause');
     pause.innerText = 'pausa';
@@ -113,22 +115,24 @@ export default function dTask(item) {
         panel.appendChild(cancel);
     })
 
-    restore.addEventListener('click', (e) =>  restoreTimer(doingTask))
+    restore.addEventListener('click', (e) => restoreTimer(doingTask))
 
 
 
     //Regresar la lista a pendientes
     toPendingTask.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         let acept = confirm("Quieres regresar la tarea a pendientes?");
         if (acept === true) {
             openModalDoing2();
             let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
-            const Task={ name: finishClick.name,
-                 description: finishClick.description, 
-                 id: `task-${Math.floor(Math.random() * 300)}`,
-                 fechaT:Date.now() }
+            const Task = {
+                name: finishClick.name,
+                description: finishClick.description,
+                id: `task-${Math.floor(Math.random() * 300)}`,
+                fechaT: Date.now()
+            }
             listItems.push(Task);
             localStorage.setItem('myTodoList', JSON.stringify(listItems));
             createPendingTask(listItems);
@@ -140,20 +144,19 @@ export default function dTask(item) {
         }
     })
 
-
-    //
-
     finishTask.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         let acept = confirm("Enserio Terminaste tu tarea?");
         if (acept === true) {
             openModalDoing();
             let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
-            const Task={ name: finishClick.name,
-                 description: finishClick.description, 
-                 id: `task-${Math.floor(Math.random() * 300)}`,
-                 fechaT:Date.now() }
+            const Task = {
+                name: finishClick.name,
+                description: finishClick.description,
+                id: `task-${Math.floor(Math.random() * 300)}`,
+                fechaT: Date.now()
+            }
             finishListItems.push(Task);
             localStorage.setItem('myFinishList', JSON.stringify(finishListItems));
             createFinishTask(finishListItems);

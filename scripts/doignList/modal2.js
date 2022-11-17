@@ -4,6 +4,8 @@ const closeModal = document.querySelector("#closeDoingModal2")
 function openModalDoing2() { modal.showModal() }
 
 function closeModalDoing2() {
+    console.log(modal);
+    console.log(closeModal);
     closeModal.addEventListener('click', () => { modal.close() })
 }
 
