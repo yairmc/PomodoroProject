@@ -69,6 +69,7 @@ span {
     border-style: none;
     background-color: #B9B2FF;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 /* Modal Add */
