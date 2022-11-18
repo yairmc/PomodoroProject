@@ -13,7 +13,7 @@ createDoingTask(listDoingItems)
 
 export default function dTask(item) {
     createFinishTask(finishListItems)
-   
+
 
     const doingTask = document.createElement('div');
     doingTask.classList.add('doingTask');
@@ -61,10 +61,12 @@ export default function dTask(item) {
     finishTask.innerText = 'Finish Task';
 
 
-     const toPendingTask = document.createElement('div');
-     toPendingTask.classList.add('toPendingTask')
-     toPendingTask.innerText = 'Regresar Tarea';
+    const toPendingTask = document.createElement('div');
+    toPendingTask.classList.add('toPendingTask')
+    toPendingTask.innerText = 'Regresar Tarea';
 
+    const lessPomodoro = document.createElement('p');
+    lessPomodoro.classList.add('lessPomodoro');
 
     const timer = document.createElement('div');
     timer.classList.add('timer');
@@ -90,6 +92,7 @@ export default function dTask(item) {
 
     start.addEventListener('click', (e) => {
         startTimer(doingTask);
+        doingTask.removeChild(toPendingTask)
         panel.removeChild(start);
         panel.appendChild(pause);
         panel.appendChild(restore);
@@ -97,7 +100,7 @@ export default function dTask(item) {
         timer.appendChild(minutes);
         timer.appendChild(points);
         timer.appendChild(seconds);
-
+        doingTask.appendChild(lessPomodoro);
         doingClass.replaceChildren(doingTask)
     })
 
