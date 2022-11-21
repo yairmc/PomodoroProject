@@ -9,6 +9,7 @@ let breakCountLess = 4;
 
 let advicedRest = false;
 
+
 const startTimer = (dtask) => {
 
     workMinutes = workTime - 1; // auxiliar minutos detrabajo en cambios
@@ -18,10 +19,12 @@ const startTimer = (dtask) => {
 
 
     let timeFunction = () => {
+
         // agregando datos  a los elementos dtask  
-        dtask.children[3].children[0].innerHTML = workMinutes;
-        dtask.children[3].children[2].innerHTML = secondsTime;
-        dtask.children[5].innerHTML = `Pomodoros restantes: ${breakCountLess}`
+        console.log(dtask.children[3]);
+        dtask.children[3].children[1].innerHTML = workMinutes;
+        dtask.children[3].children[3].innerHTML = secondsTime;
+        dtask.children[5].innerHTML = `Long break in ${breakCountLess} Pomodoros`
 
         secondsTime = secondsTime - 1;
 
@@ -32,26 +35,22 @@ const startTimer = (dtask) => {
                 if (breakCount % 2 === 0 && advicedRest === false) {
                     if (breakCount < 4) {
                         workMinutes = restMinutes;
-                        console.log('descanzo');
+                        dtask.children[3].children[0].innerHTML = "Rest ";
                         breakCount++;
-                        console.log(breakCount);
                     }
                     else {
                         workMinutes = longRestTime;
                         breakCount = 0;
-                        console.log('descanzo largo')
-                        console.log(breakCount);
                         breakCount++;
                         breakCountLess = 4;
                     }
 
                 } else {
+                    dtask.children[3].children[0].innerHTML = "Work ";
                     workMinutes = workTime - 1;
                     breakCount++;
                     breakCountLess--;
-                    console.log("trabajo")
-                    console.log(breakCount);
-                    console.log(breakCountLess);
+
                 }
             }
             secondsTime = 6;
@@ -71,9 +70,12 @@ function reanudarTimer(dtask) {
     let breakCount = 0;
 
     let timeFunction = () => {
-        dtask.children[3].children[0].innerHTML = workMinutes;
-        dtask.children[3].children[2].innerHTML = secondsTime;
-        dtask.children[5].innerHTML = `Pomodoros restantes: ${breakCountLess}`
+
+        console.log(dtask.children[3]);
+        dtask.children[3].children[0].innerHTML = 'workMinutes';
+        dtask.children[3].children[1].innerHTML = workMinutes;
+        dtask.children[3].children[3].innerHTML = secondsTime;
+        dtask.children[5].innerHTML = `Long break in ${breakCountLess} Pomodoros`
 
         secondsTime = secondsTime - 1;
 
@@ -84,15 +86,12 @@ function reanudarTimer(dtask) {
                 if (breakCount % 2 === 0 && advicedRest === false) {
                     if (breakCount < 4) {
                         workMinutes = restMinutes;
-                        console.log('descanzo');
+                        dtask.children[3].children[0].innerHTML = "Rest ";
                         breakCount++;
-                        console.log(breakCount);
                     }
                     else {
                         workMinutes = longRestTime;
                         breakCount = 0;
-                        console.log('descanzo largo')
-                        console.log(breakCount);
                         breakCount++;
                         breakCountLess = 4;
                     }
@@ -101,9 +100,7 @@ function reanudarTimer(dtask) {
                     workMinutes = workTime - 1;
                     breakCount++;
                     breakCountLess--;
-                    console.log("trabajo")
-                    console.log(breakCount);
-                    console.log(breakCountLess);
+                    dtask.children[3].children[0].innerHTML = "Work ";
                 }
             }
             secondsTime = 6;

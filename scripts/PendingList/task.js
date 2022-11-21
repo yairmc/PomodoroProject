@@ -29,11 +29,11 @@ export default function pTask(item) {
     //Boton
     const buttonAddPendingTask = document.createElement('div');
     buttonAddPendingTask.classList.add('addPendingTask');
-    buttonAddPendingTask.innerText = 'Iniciar'
+    buttonAddPendingTask.innerText = 'Do Task'
 
     const buttonEliminarTarea = document.createElement('div');
     buttonEliminarTarea.classList.add('eliminarPendingTask');
-    buttonEliminarTarea.innerText = 'Eliminar';
+    buttonEliminarTarea.innerText = 'Delete';
 
     
     pendingTask.appendChild(pendingTaskName)

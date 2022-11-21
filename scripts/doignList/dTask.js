@@ -58,16 +58,16 @@ export default function dTask(item) {
 
     const finishTask = document.createElement('div');
     finishTask.classList.add('finishTaskButton')
-    finishTask.innerText = 'Finish Task';
+    finishTask.innerText = 'Finish';
 
     //boton para eliminar
     const buttonEliminarTarea = document.createElement('div');
     buttonEliminarTarea.classList.add('eliminarDoingTask');
-    buttonEliminarTarea.innerText = 'Eliminar';
+    buttonEliminarTarea.innerText = 'Delete';
 
     const toPendingTask = document.createElement('div');
     toPendingTask.classList.add('toPendingTask')
-    toPendingTask.innerText = 'Regresar Tarea';
+    toPendingTask.innerText = 'Return';
 
     const lessPomodoro = document.createElement('p');
     lessPomodoro.classList.add('lessPomodoro');
@@ -75,13 +75,13 @@ export default function dTask(item) {
     const timer = document.createElement('div');
     timer.classList.add('timer');
 
+    const workRest =document.createElement('p');
+    workRest.classList.add('workRest')
+    workRest.innerText='Work'
+
     const minutes = document.createElement('p');
-    minutes.setAttribute('id', 'minutes');
-    minutes.innerText = "00"
 
     const seconds = document.createElement('p')
-    seconds.setAttribute('id', 'seconds')
-    seconds.innerText = "00"
 
     const points = document.createElement('p');
     points.innerText = ':';
@@ -91,17 +91,24 @@ export default function dTask(item) {
     panel.appendChild(start);
 
     doingTask.appendChild(timer);
-    doingTask.appendChild(finishTask);
-    doingTask.appendChild(toPendingTask);
-    doingTask.appendChild(buttonEliminarTarea);
+
+    const options = document.createElement( 'div')
+    options.classList.add('options');
+
+    doingTask.appendChild(options)
+    options.appendChild(finishTask);
+    options.appendChild(toPendingTask);
+    options.appendChild(buttonEliminarTarea);
 
     start.addEventListener('click', (e) => {
         startTimer(doingTask);
-        doingTask.removeChild(toPendingTask)
+        doingTask.removeChild(options)
+        doingTask.appendChild(finishTask)
         panel.removeChild(start);
         panel.appendChild(pause);
         panel.appendChild(restore);
         panel.appendChild(cancel);
+        timer.appendChild(workRest)
         timer.appendChild(minutes);
         timer.appendChild(points);
         timer.appendChild(seconds);
