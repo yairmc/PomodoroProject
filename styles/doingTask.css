@@ -126,6 +126,18 @@
 }
 
 .toPendingTask{
+    background-color:#e9b700;
+    border-radius: 15rem;
+    padding: 7px;
+    width: 50%;
+    height: 30px;
+    font-size:25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.eliminarDoingTask{
     background-color:#e90000;
     border-radius: 15rem;
     padding: 7px;

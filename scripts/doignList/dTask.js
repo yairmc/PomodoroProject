@@ -189,7 +189,6 @@ export default function dTask(item) {
         doingClass.removeChild(doingTask);
         deleteDoingTask(doingClick.id);
         location.reload();
-
     })
 
 
