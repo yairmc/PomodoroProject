@@ -185,7 +185,7 @@ export default function dTask(item) {
 
     buttonEliminarTarea.addEventListener('click', (e) => {
 
-        let doingClick = listItems.find(task => task.name === e.path[1].firstChild.textContent);
+        let doingClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent);
         doingClass.removeChild(doingTask);
         deleteDoingTask(doingClick.id);
         location.reload();
