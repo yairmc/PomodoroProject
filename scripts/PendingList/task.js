@@ -106,25 +106,30 @@ export default function pTask(item) {
     })
 
     buttonEditPendingTask.addEventListener('click', (e) => {
-
         e.preventDefault();
+
+        const idTask = e.path[2]
         const task = e.path[2]
-        const name = e.path[2].childNodes[0];
-        const description = e.path[2].childNodes[1];
+        const nameT = e.path[2].childNodes[0];
+        const descriptionT = e.path[2].childNodes[1];
         const buttons = e.path[2].childNodes[2];
-        task.removeChild(name)
-        task.removeChild(description)
+        task.removeChild(nameT)
+        task.removeChild(descriptionT)
         task.removeChild(buttons)
 
-        inputName.value = name.textContent;
-        inputDescription.value = description.textContent;
+        inputName.value = nameT.textContent;
+        inputDescription.value = descriptionT.textContent;
         task.appendChild(inputName);
         task.appendChild(inputDescription);
         task.appendChild(saveEdit);
         task.appendChild(cancelEdit)
 
         saveEdit.addEventListener('click', (e) => {
-            console.log('Editando...');
+            let doingClick = listItems.find(task => task.name === nameT.textContent);
+            listItems.push({ name: inputName.value, description: inputDescription.value, id: `task-${Math.floor(Math.random() * 300)}` });
+            localStorage.setItem('myTodoList', JSON.stringify(listItems));
+            deletePendingTask(doingClick.id)
+            location.reload();
         })
         cancelEdit.addEventListener('click', (e) => {
             location.reload();
@@ -132,7 +137,6 @@ export default function pTask(item) {
     })
 
     buttonEliminarTarea.addEventListener('click', (e) => {
-
         let doingClick = listItems.find(task => task.name === e.path[2].firstChild.textContent);
         pendingClass.removeChild(pendingTask);
         deletePendingTask(doingClick.id);
