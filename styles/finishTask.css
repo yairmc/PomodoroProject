@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 15px;
-    background-color: #E8E8E8;
+    background-color: #0E00A9;
     box-shadow: -6px 6px 2px 1px rgba(0, 0, 0, 0.3);
     width: 400px;
 }
@@ -21,7 +21,7 @@
  .finishNameTask{
     font-size: 30px;
     margin: 0;
-    color: #0E00A9;
+    color: white;
 }
 
   .finishDescriptionTask{
@@ -34,5 +34,5 @@
 .finishFechaT {
     font-size: 30px;
     margin:10px 0;
-    color:#B9B2FF;
+    color:#b50000;
 }

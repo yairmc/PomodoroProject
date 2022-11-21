@@ -15,7 +15,7 @@
 
 <body>
     <header class="header">
-        <h1>Lista de Tareas de tereas importantes<span>"POMODORO"</span></h1>
+        <h1>Pomodoro Timer</h1>
     </header>
 
     <main class="content">
@@ -23,21 +23,22 @@
         <!-- Contenedor del formulario  -->
         <div>
             <div class="titleContent">
-                <h2>Crear nueva Tarea</h2>
+                <h2>New Task</h2>
+                    <p>Enter the data to create a new <span>"Task"</span> </p>
             </div>
             <div>
                 <form action="submit" class="form" id="form">
-                    <h3>Nombre de la tarea:</h3>
-                    <input type="text" class="inputNameTask" id="inputNameTask"
-                        placeholder="Ingrese el nombre de la tarea" required maxlength="100">
-                    <h3>Descripcion de la tarea:</h3>
+                    <h3>Task Name:</h3>
+                    <input type="text" class="inputNameTask" id="inputNameTask" placeholder="Add the task name" required
+                        maxlength="100">
+                    <h3>Task Description :</h3>
                     <textarea class="inputDescriptionTask" rows="5" id="inputDescriptionTask"
-                        placeholder="Ingrese la descripcion de la tarea" required maxlength="100"></textarea>
-                    <input type="submit" class="addButton" id="addButton" value="Agregar" />
+                        placeholder="Add task description" required maxlength="100"></textarea>
+                    <input type="submit" class="addButton" id="addButton" value="Add Task" />
                 </form>
                 <dialog class="addModalContent" id="modal">
                     <img id="closeModal" src="./img/success.png" alt="success">
-                    <h2>Tarea Agregada Exitosamente</h2>
+                    <h2>Added Succesfull</h2>
                 </dialog>
             </div>
         </div>
@@ -46,8 +47,8 @@
         <!-- Contenedor de las tareas pendientes  -->
         <div>
             <div class="titleContent">
-                <h2>Tareas Pendientes</h2>
-                <p>Agrega la lista de <span>"Tareas"</span> que tienes que realizar</p>
+                <h2>Pending Task</h2>
+                <p>Add the list of <span>"Task"</span> you have to do</p>
             </div>
             <div class="pendingClass" id="pendingClass"></div>
         </div>
@@ -55,8 +56,8 @@
         <!-- Contenedor de las tareas en progreso  -->
         <div>
             <div class="titleContent">
-                <h2>Tareas En Progreso</h2>
-                <p>Agrege ala lista las <span>"Tareas"</span> que estas realizando</p>
+                <h2>Task in progress</h2>
+                <p>Add to the list the <span>"Task"</span> that you are doing</p>
             </div>
             <div class="doingClass" id="doingClass"></div>
             <dialog class="adviceModal" id="adviceModal">
@@ -73,8 +74,8 @@
         <!-- Conenedor de tareas Terminadas  -->
         <div>
             <div class="titleContent">
-                <h2>Tareas Completadas</h2>
-                <p>Agrege ala lista las <span>"Tareas"</span> que estan completadas</p>
+                <h2>Completed Task</h2>
+                <p>These <span>"Tareas"</span> you have completed</p>
             </div>
             <div class="finishClass" id="finishClass"></div>
         </div>
