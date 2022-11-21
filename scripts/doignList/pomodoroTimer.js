@@ -5,58 +5,55 @@ let longRestTime = 4; //Tiempo de descanzo largo
 let secondsTime = 6; // Segundos del minuto
 let workMinutes;
 let timerCount;
+let breakCountLess = 4;
 
-
-
-
+let advicedRest = false;
 
 const startTimer = (dtask) => {
-
-
-
 
     workMinutes = workTime - 1; // auxiliar minutos detrabajo en cambios
     let restMinutes = restTime - 1; //Auxiliar minutos de descanzo en cambios
 
     let breakCount = 0;  // +1 si termino el tiempo de trabajo, +1 si paso el tiempo de descanzo
 
-    let breakCountLess=4;
-    
-   
+
     let timeFunction = () => {
+        // agregando datos  a los elementos dtask  
         dtask.children[3].children[0].innerHTML = workMinutes;
         dtask.children[3].children[2].innerHTML = secondsTime;
-        dtask.children[5].innerHTML=`Pomodoros restantes: ${breakCountLess}`
+        dtask.children[5].innerHTML = `Pomodoros restantes: ${breakCountLess}`
 
         secondsTime = secondsTime - 1;
 
-        if (secondsTime === 0) {
-            workMinutes = workMinutes - 1;
+        if (secondsTime === 0) {  //si los segundos marcan 0
+            workMinutes = workMinutes - 1; //minutos actuales - 1
             if (workMinutes === -1) {
-                if (breakCount % 2 === 0) {
-
-                    if (breakCount < 8) {
+                advicedRest = confirm('Omitir Descanzo?')
+                if (breakCount % 2 === 0 && advicedRest === false) {
+                    if (breakCount < 4) {
                         workMinutes = restMinutes;
                         console.log('descanzo');
                         breakCount++;
                         console.log(breakCount);
-                    } else {
+                    }
+                    else {
                         workMinutes = longRestTime;
                         breakCount = 0;
                         console.log('descanzo largo')
                         console.log(breakCount);
                         breakCount++;
-                        breakCountLess=4;
+                        breakCountLess = 4;
                     }
+
                 } else {
-                    workMinutes = workTime;
+                    workMinutes = workTime - 1;
                     breakCount++;
                     breakCountLess--;
                     console.log("trabajo")
                     console.log(breakCount);
+                    console.log(breakCountLess);
                 }
             }
-
             secondsTime = 6;
         }
     }
@@ -76,23 +73,40 @@ function reanudarTimer(dtask) {
     let timeFunction = () => {
         dtask.children[3].children[0].innerHTML = workMinutes;
         dtask.children[3].children[2].innerHTML = secondsTime;
+        dtask.children[5].innerHTML = `Pomodoros restantes: ${breakCountLess}`
 
         secondsTime = secondsTime - 1;
 
-        if (secondsTime === 0) {
-            workMinutes = workMinutes - 1;
+        if (secondsTime === 0) {  //si los segundos marcan 0
+            workMinutes = workMinutes - 1; //minutos actuales - 1
             if (workMinutes === -1) {
-                if (breakCount % 2 === 0) {
-                    workMinutes = restMinutes;
-                    breakCount++;
-                    confirm("Termino tu sesion de pomodoro, descanza");
+                advicedRest = confirm('Omitir Descanzo?')
+                if (breakCount % 2 === 0 && advicedRest === false) {
+                    if (breakCount < 4) {
+                        workMinutes = restMinutes;
+                        console.log('descanzo');
+                        breakCount++;
+                        console.log(breakCount);
+                    }
+                    else {
+                        workMinutes = longRestTime;
+                        breakCount = 0;
+                        console.log('descanzo largo')
+                        console.log(breakCount);
+                        breakCount++;
+                        breakCountLess = 4;
+                    }
+
                 } else {
-                    workMinutes = workTime;
+                    workMinutes = workTime - 1;
                     breakCount++;
-                    confirm("Termino tu descanzo, sigue")
+                    breakCountLess--;
+                    console.log("trabajo")
+                    console.log(breakCount);
+                    console.log(breakCountLess);
                 }
             }
-            secondsTime = 10;
+            secondsTime = 6;
         }
     }
     timerCount = setInterval(timeFunction, 1000)
