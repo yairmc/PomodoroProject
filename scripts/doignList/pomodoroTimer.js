@@ -21,7 +21,6 @@ const startTimer = (dtask) => {
     let timeFunction = () => {
 
         // agregando datos  a los elementos dtask  
-        console.log(dtask.children[3]);
         dtask.children[3].children[1].innerHTML = workMinutes;
         dtask.children[3].children[3].innerHTML = secondsTime;
         dtask.children[5].innerHTML = `Long break in ${breakCountLess} Pomodoros`

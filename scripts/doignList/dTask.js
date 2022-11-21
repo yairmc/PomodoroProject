@@ -69,6 +69,10 @@ export default function dTask(item) {
     toPendingTask.classList.add('toPendingTask')
     toPendingTask.innerText = 'Return';
 
+    const buttonEditDoingTask = document.createElement('div');
+    buttonEditDoingTask.classList.add('editDoingTask');
+    buttonEditDoingTask.innerText = 'Edit';
+
     const lessPomodoro = document.createElement('p');
     lessPomodoro.classList.add('lessPomodoro');
 
@@ -99,6 +103,7 @@ export default function dTask(item) {
     doingTask.appendChild(options)
     options.appendChild(finishTask);
     options.appendChild(toPendingTask);
+    options.appendChild(buttonEditDoingTask);
     options.appendChild(buttonEliminarTarea);
 
     start.addEventListener('click', (e) => {
@@ -135,6 +140,28 @@ export default function dTask(item) {
 
     restore.addEventListener('click', (e) => restoreTimer(doingTask))
 
+   finishTask.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        let acept = confirm("Did you finish your homework??");
+        if (acept === true) {
+            openModalDoing();
+            let finishClick = listDoingItems.find(task => task.name === e.path[2].firstChild.textContent)
+            console.log(finishClick);
+            const Task = {
+                name: finishClick.name,
+                description: finishClick.description,
+                id: `task-${Math.floor(Math.random() * 300)}`,
+                fechaT: Date.now()
+            }
+            finishListItems.push(Task);
+            localStorage.setItem('myFinishList', JSON.stringify(finishListItems));
+            closeModalDoing()
+            createFinishTask(finishListItems);
+            deleteDoingTask(finishClick.id);
+
+        } else { return }
+    })
 
 
     //Regresar la lista a pendientes
@@ -158,34 +185,10 @@ export default function dTask(item) {
         } else { return }
     })
 
-    finishTask.addEventListener('click', (e) => {
+    buttonEditDoingTask.addEventListener('click', (e)=>{
         e.preventDefault();
-
-        let acept = confirm("Did you finish your homework??");
-        if (acept === true) {
-            openModalDoing();
-            let finishClick = listDoingItems.find(task => task.name === e.path[2].firstChild.textContent)
-            console.log(finishClick);
-            const Task = {
-                name: finishClick.name,
-                description: finishClick.description,
-                id: `task-${Math.floor(Math.random() * 300)}`,
-                fechaT: Date.now()
-            }
-            finishListItems.push(Task);
-            localStorage.setItem('myFinishList', JSON.stringify(finishListItems));
-            closeModalDoing()
-            createFinishTask(finishListItems);
-            deleteDoingTask(finishClick.id);
-
-        } else { return }
+        console.log('editando un doning task');
     })
-
-    const deleteDoingTask = (id) => {
-        const newList = listDoingItems.filter(task => task.id != id);
-        listDoingItems = [...newList];
-        localStorage.setItem('myDoingList', JSON.stringify(listDoingItems))
-    }
 
     buttonEliminarTarea.addEventListener('click', (e) => {
         e.preventDefault();
@@ -199,7 +202,11 @@ export default function dTask(item) {
         } else { return }
     })
 
-
+    const deleteDoingTask = (id) => {
+        const newList = listDoingItems.filter(task => task.id != id);
+        listDoingItems = [...newList];
+        localStorage.setItem('myDoingList', JSON.stringify(listDoingItems))
+    }
 }
 
 
