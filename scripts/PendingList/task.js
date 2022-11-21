@@ -47,9 +47,9 @@ export default function pTask(item) {
 
     // Editt task 
     const inputName = document.createElement('input')
-    inputName.classList.add('inputName')
+    inputName.classList.add('input')
     const inputDescription = document.createElement('input')
-    inputDescription.classList.add('inputDescription')
+    inputDescription.classList.add('input')
 
     const saveEdit = document.createElement('div');
     saveEdit.classList.add('editPendingTask')
@@ -58,6 +58,9 @@ export default function pTask(item) {
     const cancelEdit = document.createElement('div');
     cancelEdit.classList.add('eliminarPendingTask')
     cancelEdit.innerText = 'Cancel'
+
+    const btn = document.createElement('div');
+    btn.classList.add('grider');
 
     pendingTask.appendChild(pendingTaskName)
     pendingTask.appendChild(pendingTaskDescription);
@@ -108,7 +111,6 @@ export default function pTask(item) {
     buttonEditPendingTask.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const idTask = e.path[2]
         const task = e.path[2]
         const nameT = e.path[2].childNodes[0];
         const descriptionT = e.path[2].childNodes[1];
@@ -119,10 +121,12 @@ export default function pTask(item) {
 
         inputName.value = nameT.textContent;
         inputDescription.value = descriptionT.textContent;
+        task.classList.add('grider')
         task.appendChild(inputName);
         task.appendChild(inputDescription);
-        task.appendChild(saveEdit);
-        task.appendChild(cancelEdit)
+        task.appendChild(btn);
+        btn.appendChild(saveEdit);
+        btn.appendChild(cancelEdit)
 
         saveEdit.addEventListener('click', (e) => {
             let doingClick = listItems.find(task => task.name === nameT.textContent);

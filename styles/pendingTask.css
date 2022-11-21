@@ -99,3 +99,20 @@
     background-color: #860000;
     box-shadow: none;
 }
+
+/* Edit  */
+.input{
+    background-color:#4e46a5;
+    color:white;
+    border-radius: 10px;
+    border-style: none;
+    outline: none;
+    padding: 5px;
+    margin: 10px 0 ;
+}
+.grider{
+    display: flex;
+    justify-content:space-evenly;
+    width: 100%;
+} 
+
