@@ -31,9 +31,15 @@ export default function pTask(item) {
     buttonAddPendingTask.classList.add('addPendingTask');
     buttonAddPendingTask.innerText = 'Iniciar'
 
+    const buttonEliminarTarea = document.createElement('div');
+    buttonEliminarTarea.classList.add('eliminarPendingTask');
+    buttonEliminarTarea.innerText = 'Eliminar';
+
+    
     pendingTask.appendChild(pendingTaskName)
     pendingTask.appendChild(pendingTaskDescription);
     pendingTask.appendChild(buttonAddPendingTask);
+    pendingTask.appendChild(buttonEliminarTarea);
 
     // agregando la pending Task al nodo
     node = pendingClass.childNodes;
@@ -79,4 +85,14 @@ export default function pTask(item) {
         listItems = [...newListItems];
         localStorage.setItem('myTodoList', JSON.stringify(listItems));
     }
+
+
+    buttonEliminarTarea.addEventListener('click', (e) => {
+
+        let doingClick = listItems.find(task => task.name === e.path[1].firstChild.textContent);
+        pendingClass.removeChild(pendingTask);
+        deletePendingTask(doingClick.id);
+        location.reload();
+
+    })
 }

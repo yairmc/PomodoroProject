@@ -60,6 +60,10 @@ export default function dTask(item) {
     finishTask.classList.add('finishTaskButton')
     finishTask.innerText = 'Finish Task';
 
+    //boton para eliminar
+    const buttonEliminarTarea = document.createElement('div');
+    buttonEliminarTarea.classList.add('eliminarDoingTask');
+    buttonEliminarTarea.innerText = 'Eliminar';
 
     const toPendingTask = document.createElement('div');
     toPendingTask.classList.add('toPendingTask')
@@ -89,6 +93,7 @@ export default function dTask(item) {
     doingTask.appendChild(timer);
     doingTask.appendChild(finishTask);
     doingTask.appendChild(toPendingTask);
+    doingTask.appendChild(buttonEliminarTarea);
 
     start.addEventListener('click', (e) => {
         startTimer(doingTask);
@@ -177,6 +182,15 @@ export default function dTask(item) {
         listDoingItems = [...newList];
         localStorage.setItem('myDoingList', JSON.stringify(listDoingItems))
     }
+
+    buttonEliminarTarea.addEventListener('click', (e) => {
+
+        let doingClick = listItems.find(task => task.name === e.path[1].firstChild.textContent);
+        doingClass.removeChild(doingTask);
+        deleteDoingTask(doingClick.id);
+        location.reload();
+
+    })
 
 
 }
