@@ -75,9 +75,10 @@ export default function dTask(item) {
     const timer = document.createElement('div');
     timer.classList.add('timer');
 
-    const workRest =document.createElement('p');
+    const workRest = document.createElement('p');
     workRest.classList.add('workRest')
-    workRest.innerText='Work'
+    workRest.innerText = 'Work'
+    
 
     const minutes = document.createElement('p');
 
@@ -92,7 +93,7 @@ export default function dTask(item) {
 
     doingTask.appendChild(timer);
 
-    const options = document.createElement( 'div')
+    const options = document.createElement('div')
     options.classList.add('options');
 
     doingTask.appendChild(options)
@@ -140,11 +141,10 @@ export default function dTask(item) {
     toPendingTask.addEventListener('click', (e) => {
         e.preventDefault();
 
-
-        let acept = confirm("Quieres regresar la tarea a pendientes?");
+        let acept = confirm("Do you want to return the task to pending?");
         if (acept === true) {
             openModalDoing2();
-            let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
+            let finishClick = listDoingItems.find(task => task.name === e.path[2].firstChild.textContent)
             const Task = {
                 name: finishClick.name,
                 description: finishClick.description,
@@ -155,18 +155,17 @@ export default function dTask(item) {
             closeModalDoing2()
             createPendingTask(listItems);
             deleteDoingTask(finishClick.id);
-        } else {
-            return;
-        }
+        } else { return }
     })
 
     finishTask.addEventListener('click', (e) => {
         e.preventDefault();
 
-        let acept = confirm("Enserio Terminaste tu tarea?");
+        let acept = confirm("Did you finish your homework??");
         if (acept === true) {
             openModalDoing();
-            let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
+            let finishClick = listDoingItems.find(task => task.name === e.path[2].firstChild.textContent)
+            console.log(finishClick);
             const Task = {
                 name: finishClick.name,
                 description: finishClick.description,
@@ -179,9 +178,7 @@ export default function dTask(item) {
             createFinishTask(finishListItems);
             deleteDoingTask(finishClick.id);
 
-        } else {
-            return;
-        }
+        } else { return }
     })
 
     const deleteDoingTask = (id) => {
@@ -191,11 +188,15 @@ export default function dTask(item) {
     }
 
     buttonEliminarTarea.addEventListener('click', (e) => {
+        e.preventDefault();
+        let acept = confirm('Do you want to delete this task?')
 
-        let doingClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent);
-        doingClass.removeChild(doingTask);
-        deleteDoingTask(doingClick.id);
-        location.reload();
+        if (acept === true) {
+            let doingClick = listDoingItems.find(task => task.name === e.path[2].firstChild.textContent);
+            doingClass.removeChild(doingTask);
+            deleteDoingTask(doingClick.id);
+            location.reload();
+        } else { return }
     })
 
 
