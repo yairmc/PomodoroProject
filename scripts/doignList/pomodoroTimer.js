@@ -21,7 +21,6 @@ const startTimer = (dtask) => {
     let timeFunction = () => {
 
         // agregando datos  a los elementos dtask  
-        console.log(dtask.children[3]);
         dtask.children[3].children[1].innerHTML = workMinutes;
         dtask.children[3].children[3].innerHTML = secondsTime;
         dtask.children[5].innerHTML = `Long break in ${breakCountLess} Pomodoros`
@@ -31,7 +30,7 @@ const startTimer = (dtask) => {
         if (secondsTime === 0) {  //si los segundos marcan 0
             workMinutes = workMinutes - 1; //minutos actuales - 1
             if (workMinutes === -1) {
-                advicedRest = confirm('Omitir Descanzo?')
+                advicedRest = confirm('skip break?')
                 if (breakCount % 2 === 0 && advicedRest === false) {
                     if (breakCount < 4) {
                         workMinutes = restMinutes;
@@ -61,7 +60,7 @@ const startTimer = (dtask) => {
 }
 
 function pausarTimer() {
-    alert('has pausado el temporizador')
+    alert('you have paused the timer')
     clearInterval(timerCount)
 }
 
@@ -82,7 +81,7 @@ function reanudarTimer(dtask) {
         if (secondsTime === 0) {  //si los segundos marcan 0
             workMinutes = workMinutes - 1; //minutos actuales - 1
             if (workMinutes === -1) {
-                advicedRest = confirm('Omitir Descanzo?')
+                advicedRest = confirm('skip break?')
                 if (breakCount % 2 === 0 && advicedRest === false) {
                     if (breakCount < 4) {
                         workMinutes = restMinutes;
@@ -110,7 +109,7 @@ function reanudarTimer(dtask) {
 }
 
 function restoreTimer(dtask) {
-    let confirmacion = confirm("Seguro quieres restablecer el pomodoro?")
+    let confirmacion = confirm("Are you sure you want to reset the pomodoro?")
     if (confirmacion) {
         workTime = 1;
         restTime = 2;
@@ -118,9 +117,7 @@ function restoreTimer(dtask) {
         clearInterval(timerCount);
         startTimer(dtask)
     }
-    else {
-        return
-    }
+    else { return }
 }
 
 export {

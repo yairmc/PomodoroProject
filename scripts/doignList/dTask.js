@@ -69,15 +69,37 @@ export default function dTask(item) {
     toPendingTask.classList.add('toPendingTask')
     toPendingTask.innerText = 'Return';
 
+    const buttonEditDoingTask = document.createElement('div');
+    buttonEditDoingTask.classList.add('editDoingTask');
+    buttonEditDoingTask.innerText = 'Edit';
+
     const lessPomodoro = document.createElement('p');
     lessPomodoro.classList.add('lessPomodoro');
 
     const timer = document.createElement('div');
     timer.classList.add('timer');
 
-    const workRest =document.createElement('p');
+    const workRest = document.createElement('p');
     workRest.classList.add('workRest')
-    workRest.innerText='Work'
+    workRest.innerText = 'Work'
+
+    // Editt task 
+    const inputName = document.createElement('input')
+    inputName.classList.add('input')
+    const inputDescription = document.createElement('input')
+    inputDescription.classList.add('input')
+
+    const saveEdit = document.createElement('div');
+    saveEdit.classList.add('editPendingTask')
+    saveEdit.innerText = 'Save'
+
+    const cancelEdit = document.createElement('div');
+    cancelEdit.classList.add('eliminarPendingTask')
+    cancelEdit.innerText = 'Cancel'
+
+    const btn = document.createElement('div');
+    btn.classList.add('grider');
+
 
     const minutes = document.createElement('p');
 
@@ -92,12 +114,13 @@ export default function dTask(item) {
 
     doingTask.appendChild(timer);
 
-    const options = document.createElement( 'div')
+    const options = document.createElement('div')
     options.classList.add('options');
 
     doingTask.appendChild(options)
     options.appendChild(finishTask);
     options.appendChild(toPendingTask);
+    options.appendChild(buttonEditDoingTask);
     options.appendChild(buttonEliminarTarea);
 
     start.addEventListener('click', (e) => {
@@ -134,39 +157,14 @@ export default function dTask(item) {
 
     restore.addEventListener('click', (e) => restoreTimer(doingTask))
 
-
-
-    //Regresar la lista a pendientes
-    toPendingTask.addEventListener('click', (e) => {
-        e.preventDefault();
-
-
-        let acept = confirm("Quieres regresar la tarea a pendientes?");
-        if (acept === true) {
-            openModalDoing2();
-            let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
-            const Task = {
-                name: finishClick.name,
-                description: finishClick.description,
-                id: `task-${Math.floor(Math.random() * 300)}`,
-            }
-            listItems.push(Task);
-            localStorage.setItem('myTodoList', JSON.stringify(listItems));
-            closeModalDoing2()
-            createPendingTask(listItems);
-            deleteDoingTask(finishClick.id);
-        } else {
-            return;
-        }
-    })
-
     finishTask.addEventListener('click', (e) => {
         e.preventDefault();
 
-        let acept = confirm("Enserio Terminaste tu tarea?");
+        let acept = confirm("Did you finish your homework??");
         if (acept === true) {
             openModalDoing();
-            let finishClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent)
+            let finishClick = listDoingItems.find(task => task.name === e.path[2].firstChild.textContent)
+            console.log(finishClick);
             const Task = {
                 name: finishClick.name,
                 description: finishClick.description,
@@ -179,9 +177,77 @@ export default function dTask(item) {
             createFinishTask(finishListItems);
             deleteDoingTask(finishClick.id);
 
-        } else {
-            return;
-        }
+        } else { return }
+    })
+
+
+    //Regresar la lista a pendientes
+    toPendingTask.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        let acept = confirm("Do you want to return the task to pending?");
+        if (acept === true) {
+            openModalDoing2();
+            let finishClick = listDoingItems.find(task => task.name === e.path[2].firstChild.textContent)
+            const Task = {
+                name: finishClick.name,
+                description: finishClick.description,
+                id: `task-${Math.floor(Math.random() * 300)}`,
+            }
+            listItems.push(Task);
+            localStorage.setItem('myTodoList', JSON.stringify(listItems));
+            closeModalDoing2()
+            createPendingTask(listItems);
+            deleteDoingTask(finishClick.id);
+        } else { return }
+    })
+
+    buttonEditDoingTask.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(e.path[2]);
+
+        const nameT = e.path[2].childNodes[0];
+        const descriptionT = e.path[2].childNodes[1];
+        const timerContainer = e.path[2].childNodes[2];
+        const timer = e.path[2].childNodes[3];
+        const buttons = e.path[1]
+
+        doingTask.removeChild(nameT)
+        doingTask.removeChild(descriptionT)
+        doingTask.removeChild(buttons)
+        doingTask.removeChild(timerContainer)
+        doingTask.removeChild(timer)
+
+        inputName.value = nameT.textContent;
+        inputDescription.value = descriptionT.textContent;
+        doingTask.appendChild(inputName);
+        doingTask.appendChild(inputDescription);
+        doingTask.appendChild(btn);
+        btn.appendChild(saveEdit);
+        btn.appendChild(cancelEdit)
+
+        saveEdit.addEventListener('click', (e) => {
+            let doingClick = listDoingItems.find(task => task.name === nameT.textContent);
+            listDoingItems.push({ name: inputName.value, description: inputDescription.value, id: `task-${Math.floor(Math.random() * 300)}` });
+            localStorage.setItem('myDoingList', JSON.stringify(listDoingItems));
+            deleteDoingTask(doingClick.id)
+            location.reload();
+        })
+        cancelEdit.addEventListener('click', (e) => {
+            location.reload();
+        })
+    })
+
+    buttonEliminarTarea.addEventListener('click', (e) => {
+        e.preventDefault();
+        let acept = confirm('Do you want to delete this task?')
+
+        if (acept === true) {
+            let doingClick = listDoingItems.find(task => task.name === e.path[2].firstChild.textContent);
+            doingClass.removeChild(doingTask);
+            deleteDoingTask(doingClick.id);
+            location.reload();
+        } else { return }
     })
 
     const deleteDoingTask = (id) => {
@@ -189,16 +255,6 @@ export default function dTask(item) {
         listDoingItems = [...newList];
         localStorage.setItem('myDoingList', JSON.stringify(listDoingItems))
     }
-
-    buttonEliminarTarea.addEventListener('click', (e) => {
-
-        let doingClick = listDoingItems.find(task => task.name === e.path[1].firstChild.textContent);
-        doingClass.removeChild(doingTask);
-        deleteDoingTask(doingClick.id);
-        location.reload();
-    })
-
-
 }
 
 

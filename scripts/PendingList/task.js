@@ -26,20 +26,48 @@ export default function pTask(item) {
     const pendingTaskDescription = document.createElement('h3');
     pendingTaskDescription.classList.add('pendingDescriptionTask');
     pendingTaskDescription.innerText = item.description
+
+    const options = document.createElement('div');
+    options.classList.add('options');
+
     //Boton
     const buttonAddPendingTask = document.createElement('div');
     buttonAddPendingTask.classList.add('addPendingTask');
     buttonAddPendingTask.innerText = 'Do Task'
 
+    const buttonEditPendingTask = document.createElement('div');
+    buttonEditPendingTask.classList.add('editPendingTask');
+    buttonEditPendingTask.innerText = 'Edit';
+
+
     const buttonEliminarTarea = document.createElement('div');
     buttonEliminarTarea.classList.add('eliminarPendingTask');
     buttonEliminarTarea.innerText = 'Delete';
 
-    
+
+    // Editt task 
+    const inputName = document.createElement('input')
+    inputName.classList.add('input')
+    const inputDescription = document.createElement('input')
+    inputDescription.classList.add('input')
+
+    const saveEdit = document.createElement('div');
+    saveEdit.classList.add('editPendingTask')
+    saveEdit.innerText = 'Save'
+
+    const cancelEdit = document.createElement('div');
+    cancelEdit.classList.add('eliminarPendingTask')
+    cancelEdit.innerText = 'Cancel'
+
+    const btn = document.createElement('div');
+    btn.classList.add('grider');
+
     pendingTask.appendChild(pendingTaskName)
     pendingTask.appendChild(pendingTaskDescription);
-    pendingTask.appendChild(buttonAddPendingTask);
-    pendingTask.appendChild(buttonEliminarTarea);
+    pendingTask.appendChild(options);
+    options.appendChild(buttonAddPendingTask);
+    options.appendChild(buttonEditPendingTask)
+    options.appendChild(buttonEliminarTarea);
 
     // agregando la pending Task al nodo
     node = pendingClass.childNodes;
@@ -70,7 +98,7 @@ export default function pTask(item) {
 
     buttonAddPendingTask.addEventListener('click', (e) => {
         e.preventDefault();
-        let doingClick = listItems.find(task => task.name === e.path[1].firstChild.textContent)
+        let doingClick = listItems.find(task => task.name === e.path[2].firstChild.textContent)
 
         listDoingItems.push({ name: doingClick.name, description: doingClick.description, id: `task-${Math.floor(Math.random() * 300)}` });
         localStorage.setItem('myDoingList', JSON.stringify(listDoingItems));
@@ -80,6 +108,46 @@ export default function pTask(item) {
         location.reload();
     })
 
+    buttonEditPendingTask.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const task = e.path[2]
+        const nameT = e.path[2].childNodes[0];
+        const descriptionT = e.path[2].childNodes[1];
+        const buttons = e.path[2].childNodes[2];
+        task.removeChild(nameT)
+        task.removeChild(descriptionT)
+        task.removeChild(buttons)
+
+        inputName.value = nameT.textContent;
+        inputDescription.value = descriptionT.textContent;
+        task.classList.add('grider')
+        task.appendChild(inputName);
+        task.appendChild(inputDescription);
+        task.appendChild(btn);
+        btn.appendChild(saveEdit);
+        btn.appendChild(cancelEdit)
+
+        saveEdit.addEventListener('click', (e) => {
+            let doingClick = listItems.find(task => task.name === nameT.textContent);
+            listItems.push({ name: inputName.value, description: inputDescription.value, id: `task-${Math.floor(Math.random() * 300)}` });
+            localStorage.setItem('myTodoList', JSON.stringify(listItems));
+            deletePendingTask(doingClick.id)
+            location.reload();
+        })
+        cancelEdit.addEventListener('click', (e) => {
+            location.reload();
+        })
+    })
+
+    buttonEliminarTarea.addEventListener('click', (e) => {
+        let doingClick = listItems.find(task => task.name === e.path[2].firstChild.textContent);
+        pendingClass.removeChild(pendingTask);
+        deletePendingTask(doingClick.id);
+        location.reload();
+
+    })
+
     const deletePendingTask = (id) => {
         const newListItems = listItems.filter(task => task.id != id);
         listItems = [...newListItems];
@@ -87,12 +155,5 @@ export default function pTask(item) {
     }
 
 
-    buttonEliminarTarea.addEventListener('click', (e) => {
 
-        let doingClick = listItems.find(task => task.name === e.path[1].firstChild.textContent);
-        pendingClass.removeChild(pendingTask);
-        deletePendingTask(doingClick.id);
-        location.reload();
-
-    })
 }
